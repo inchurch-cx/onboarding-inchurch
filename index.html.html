@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Onboarding · Suporte N1 · inChurch</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ic-green: #6ABF3C;
+    --ic-green-light: #eaf6e1;
+    --ic-green-dark: #3d7a1a;
+    --ic-green-mid: #5aaa2e;
+    --bg: #ffffff;
+    --bg2: #f7f8f6;
+    --bg3: #efefef;
+    --border: #e2e5df;
+    --border2: #d0d4cc;
+    --text: #1a1f18;
+    --text2: #556050;
+    --text3: #8a9485;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── TOP NAV ── */
+  .topnav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; gap: 2rem; height: 56px;
+  }
+  .ic-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .ic-grid { display: grid; grid-template-columns: repeat(3,8px); grid-template-rows: repeat(3,8px); gap: 2px; }
+  .ic-grid span { display: block; width: 8px; height: 8px; border-radius: 2px; }
+  .ic-grid .g { background: var(--ic-green); }
+  .ic-grid .d { background: #bbb; }
+  .ic-wordmark { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: -0.5px; }
+  .ic-wordmark em { color: var(--ic-green); font-style: normal; }
+  .nav-divider { width: 1px; height: 20px; background: var(--border); }
+  .nav-tag { font-size: 12px; font-weight: 500; color: var(--text2); }
+  .nav-tabs { display: flex; gap: 2px; margin-left: auto; }
+  .nav-tab {
+    padding: 6px 14px; font-size: 13px; font-weight: 500;
+    color: var(--text2); cursor: pointer; border: none; background: none;
+    border-radius: var(--radius-sm); transition: background 0.15s, color 0.15s;
+  }
+  .nav-tab:hover { background: var(--bg2); color: var(--text); }
+  .nav-tab.active { background: var(--ic-green-light); color: var(--ic-green-dark); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 3rem 2rem 2rem;
+    max-width: 860px; margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ic-green-dark); background: var(--ic-green-light);
+    padding: 4px 12px; border-radius: 99px; margin-bottom: 1rem;
+  }
+  .hero h1 { font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.2; }
+  .hero p { font-size: 15px; color: var(--text2); max-width: 520px; line-height: 1.6; }
+
+  .prog-wrap { margin-top: 1.5rem; max-width: 400px; }
+  .prog-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--text3); margin-bottom: 6px; }
+  .prog-bar { height: 7px; background: var(--bg3); border-radius: 99px; overflow: hidden; }
+  .prog-fill { height: 100%; background: var(--ic-green); border-radius: 99px; transition: width 0.5s ease; }
+
+  /* ── PANELS ── */
+  .panel { display: none; max-width: 860px; margin: 0 auto; padding: 0 2rem 3rem; }
+  .panel.active { display: block; }
+
+  /* ── CRONOGRAMA ── */
+  .day-card { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 12px; overflow: hidden; }
+  .day-header {
+    padding: 14px 18px; cursor: pointer; display: flex; align-items: center; gap: 14px;
+    background: var(--bg2); user-select: none; transition: background 0.15s;
+  }
+  .day-header:hover { background: #f0f3ee; }
+  .day-num {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--ic-green-light); color: var(--ic-green-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+  .day-meta { flex: 1; }
+  .day-title { font-size: 15px; font-weight: 600; color: var(--text); }
+  .day-sub { font-size: 12px; color: var(--text3); margin-top: 2px; }
+  .chevron { font-size: 18px; color: var(--text3); transition: transform 0.2s; }
+  .day-card.open .chevron { transform: rotate(180deg); }
+  .day-body { display: none; }
+  .day-card.open .day-body { display: block; }
+
+  .goal-box {
+    margin: 14px 18px 0;
+    padding: 10px 14px;
+    background: var(--ic-green-light);
+    border-left: 3px solid var(--ic-green);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 13px; color: var(--ic-green-dark); line-height: 1.5;
+  }
+
+  .tl-item { display: flex; gap: 14px; padding: 11px 18px; border-top: 1px solid var(--border); align-items: flex-start; }
+  .tl-item.lunch { background: var(--bg2); }
+  .tl-time {
+    font-size: 11px; color: var(--text3); background: var(--bg3);
+    padding: 3px 9px; border-radius: 99px; white-space: nowrap;
+    flex-shrink: 0; min-width: 112px; text-align: center; margin-top: 3px;
+  }
+  .tl-content { flex: 1; }
+  .tl-title { font-size: 13px; font-weight: 500; color: var(--text); }
+  .tl-resp { font-size: 12px; color: var(--text3); margin-top: 2px; }
+  .tl-link { margin-top: 4px; }
+  .tl-link a {
+    font-size: 12px; color: var(--ic-green-dark); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .tl-link a:hover { text-decoration: underline; }
+
+  /* ── CARTILHA ── */
+  .mod-card { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 12px; overflow: hidden; }
+  .mod-header {
+    padding: 12px 16px; cursor: pointer; display: flex; align-items: center; gap: 10px;
+    background: var(--bg2); user-select: none; transition: background 0.15s;
+  }
+  .mod-header:hover { background: #f0f3ee; }
+  .mod-icon { font-size: 18px; color: var(--ic-green); }
+  .mod-name { font-size: 14px; font-weight: 600; flex: 1; color: var(--text); }
+  .mod-badge {
+    font-size: 12px; padding: 2px 10px; border-radius: 99px;
+    background: var(--bg3); color: var(--text3); font-weight: 500;
+  }
+  .mod-badge.complete { background: var(--ic-green-light); color: var(--ic-green-dark); }
+  .mod-body { display: none; padding: 4px 16px 14px; }
+  .mod-card.open .mod-body { display: block; }
+  .mod-card.open .mod-header .chevron { transform: rotate(180deg); }
+
+  .check-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 0; border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+  .check-item:last-of-type { border-bottom: none; }
+  .check-box {
+    width: 17px; height: 17px; border: 1.5px solid var(--border2);
+    border-radius: 4px; flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .check-box.checked { background: var(--ic-green); border-color: var(--ic-green); }
+  .check-box.checked::after {
+    content: ''; display: block; width: 4px; height: 8px;
+    border-right: 2px solid white; border-bottom: 2px solid white;
+    transform: rotate(45deg) translate(-1px,-1px);
+  }
+  .check-label { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .check-label.done { text-decoration: line-through; color: var(--text3); }
+
+  .q-area {
+    margin-top: 12px; padding: 12px 14px;
+    background: var(--bg2); border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+  }
+  .q-label { font-size: 12px; color: var(--text2); margin-bottom: 6px; font-weight: 500; }
+  .q-area textarea {
+    width: 100%; border: none; background: none;
+    font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text);
+    resize: vertical; min-height: 70px; outline: none; line-height: 1.6;
+  }
+  .save-btn {
+    margin-top: 8px; font-size: 12px; padding: 5px 14px;
+    border: 1px solid var(--border2); border-radius: var(--radius-sm);
+    background: white; cursor: pointer; color: var(--ic-green-dark); font-weight: 500;
+    transition: background 0.15s;
+  }
+  .save-btn:hover { background: var(--ic-green-light); }
+  .saved-tag { font-size: 11px; color: var(--ic-green); margin-left: 8px; opacity: 0; transition: opacity 0.3s; }
+
+  /* ── LINKS ── */
+  .links-toolbar { display: flex; justify-content: flex-end; margin-bottom: 14px; }
+  .edit-toggle-btn {
+    font-size: 12px; padding: 6px 14px; border: 1px solid var(--border2);
+    border-radius: var(--radius-sm); background: white; cursor: pointer;
+    color: var(--text2); display: flex; align-items: center; gap: 6px;
+    font-weight: 500; transition: background 0.15s;
+  }
+  .edit-toggle-btn:hover { background: var(--bg2); }
+  .edit-toggle-btn.editing { background: var(--ic-green-light); border-color: var(--ic-green); color: var(--ic-green-dark); }
+
+  .links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .lk-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 14px 16px; transition: border-color 0.15s, box-shadow 0.15s;
+    display: block; text-decoration: none; position: relative;
+  }
+  .lk-card:not(.no-link):not(.edit-mode):hover {
+    border-color: var(--ic-green); cursor: pointer;
+    box-shadow: 0 2px 12px rgba(106,191,60,0.12);
+  }
+  .lk-card.no-link { opacity: 0.7; }
+  .lk-card.edit-mode { border-color: var(--ic-green); background: var(--ic-green-light); cursor: default; }
+  .lk-icon { font-size: 22px; color: var(--ic-green); margin-bottom: 10px; }
+  .lk-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .lk-desc { font-size: 12px; color: var(--text3); line-height: 1.4; }
+  .lk-status { font-size: 11px; margin-top: 8px; }
+  .lk-status.ok { color: var(--ic-green-dark); }
+  .lk-status.missing { color: var(--text3); font-style: italic; }
+
+  .lk-edit-area { margin-top: 10px; display: none; }
+  .lk-edit-area.show { display: block; }
+  .lk-edit-area input {
+    width: 100%; font-size: 12px; padding: 6px 9px;
+    border: 1px solid var(--border2); border-radius: var(--radius-sm);
+    background: white; color: var(--text); outline: none;
+    font-family: 'Inter', sans-serif;
+  }
+  .lk-edit-area input:focus { border-color: var(--ic-green); }
+  .lk-save-link {
+    margin-top: 6px; font-size: 12px; padding: 4px 12px;
+    border: none; border-radius: var(--radius-sm);
+    background: var(--ic-green); color: white; cursor: pointer; font-weight: 500;
+  }
+  .lk-save-link:hover { background: var(--ic-green-dark); }
+
+  /* ── ETAPAS ── */
+  .int-item {
+    display: flex; align-items: center; gap: 12px; padding: 10px 16px;
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    margin-bottom: 8px; background: var(--bg2);
+  }
+  .int-status { font-size: 16px; }
+  .int-text { font-size: 13px; color: var(--text); }
+  .int-text.done { text-decoration: line-through; color: var(--text3); }
+  .internal-note {
+    margin-top: 16px; padding: 14px 16px;
+    background: var(--bg2); border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    font-size: 12px; color: var(--text3);
+  }
+
+  /* ── ICONS (inline SVG approach via unicode fallback) ── */
+  .icon-ext::after { content: ' ↗'; font-size: 10px; }
+
+  @media (max-width: 600px) {
+    .topnav { padding: 0 1rem; }
+    .nav-tabs { gap: 0; }
+    .nav-tab { padding: 6px 10px; font-size: 12px; }
+    .hero { padding: 2rem 1rem 1.5rem; }
+    .panel { padding: 0 1rem 2rem; }
+    .tl-time { min-width: 90px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a class="ic-logo" href="#">
+    <div class="ic-grid">
+      <span class="g"></span><span class="g"></span><span class="g"></span>
+      <span class="d"></span><span class="g"></span><span class="d"></span>
+      <span class="d"></span><span class="d"></span><span class="g"></span>
+    </div>
+    <div class="ic-wordmark"><em>in</em>church</div>
+  </a>
+  <div class="nav-divider"></div>
+  <span class="nav-tag">Onboarding · Suporte N1</span>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="switchTab('cronograma',this)">Cronograma</button>
+    <button class="nav-tab" onclick="switchTab('cartilha',this)">Cartilha</button>
+    <button class="nav-tab" onclick="switchTab('links',this)">Links úteis</button>
+    <button class="nav-tab" onclick="switchTab('etapas',this)">Acompanhamento</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">&#x1F44B; Bem-vindo(a) à equipe</div>
+  <h1>Seu guia de onboarding</h1>
+  <p>Siga as etapas abaixo para estar pronto(a) para atender de forma independente. Cada módulo salva o seu progresso automaticamente.</p>
+  <div class="prog-wrap">
+    <div class="prog-meta">
+      <span id="prog-text">Carregando progresso...</span>
+      <span id="prog-pct">0%</span>
+    </div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+</div>
+
+<!-- CRONOGRAMA -->
+<div id="cronograma" class="panel active">
+
+  <div class="day-card" id="day1">
+    <div class="day-header" onclick="toggleCard('day1')">
+      <div class="day-num">D1</div>
+      <div class="day-meta">
+        <div class="day-title">Boas Vindas</div>
+        <div class="day-sub">Treinamento assíncrono – Plataforma Na Prática</div>
+      </div>
+      <span class="chevron">&#8964;</span>
+    </div>
+    <div class="day-body">
+      <div class="tl-item">
+        <div class="tl-time">09:30 – 10:00</div>
+        <div class="tl-content">
+          <div class="tl-title">Boas vindas com o Jonas</div>
+          <div class="tl-resp">Responsável: Jonas</div>
+          <div class="tl-link"><a href="#" id="link-meet-jonas">&#x1F4F9; Abrir link do meet</a></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">10:00 – 13:00</div>
+        <div class="tl-content">
+          <div class="tl-title">Treinamento Na Prática Assíncrono</div>
+          <div class="tl-resp">Plataforma inChurch</div>
+          <div class="tl-link"><a href="https://napratica.inchurch.com.br/conteudos" target="_blank" class="icon-ext">Acessar plataforma</a></div>
+        </div>
+      </div>
+      <div class="tl-item lunch">
+        <div class="tl-time">13:00 – 14:00</div>
+        <div class="tl-content"><div class="tl-title" style="color:var(--text3)">&#x1F374; Almoço</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">14:00 – 18:00</div>
+        <div class="tl-content">
+          <div class="tl-title">Treinamento Na Prática Assíncrono</div>
+          <div class="tl-resp">Entrega: conclusão de todos os módulos</div>
+          <div class="tl-link"><a href="https://napratica.inchurch.com.br/conteudos" target="_blank" class="icon-ext">Acessar plataforma</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card" id="day2">
+    <div class="day-header" onclick="toggleCard('day2')">
+      <div class="day-num">D2</div>
+      <div class="day-meta">
+        <div class="day-title">Na Prática</div>
+        <div class="day-sub">Documento prático com prints e validações</div>
+      </div>
+      <span class="chevron">&#8964;</span>
+    </div>
+    <div class="day-body">
+      <div class="goal-box">&#127919; Ao fim do dia, você terá seguido todos os passos do documento e inserido os prints de cada etapa.</div>
+      <div class="tl-item">
+        <div class="tl-time">09:00 – 09:30</div>
+        <div class="tl-content">
+          <div class="tl-title">Boas vindas com o Gabriel – Cartilha de boas práticas</div>
+          <div class="tl-resp">Responsável: Gabriel</div>
+          <div class="tl-link"><a href="#" id="link-meet-gabriel-d2">&#x1F4F9; Abrir meet | Ver documento</a></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">09:30 – 12:00</div>
+        <div class="tl-content">
+          <div class="tl-title">Na prática – Documento (autodirigido)</div>
+        </div>
+      </div>
+      <div class="tl-item lunch">
+        <div class="tl-time">13:00 – 14:00</div>
+        <div class="tl-content"><div class="tl-title" style="color:var(--text3)">&#x1F374; Almoço</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">14:00 – 18:00</div>
+        <div class="tl-content">
+          <div class="tl-title">Na prática – Documento (autodirigido)</div>
+          <div class="tl-resp">Entrega: documento completo com todos os prints</div>
+          <div class="tl-link"><a href="#" id="link-doc-napratica">&#x1F4C4; Ver documento</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card" id="day3">
+    <div class="day-header" onclick="toggleCard('day3')">
+      <div class="day-num">D3</div>
+      <div class="day-meta">
+        <div class="day-title">Prática com o Gabriel</div>
+        <div class="day-sub">Atendimentos reais acompanhados</div>
+      </div>
+      <span class="chevron">&#8964;</span>
+    </div>
+    <div class="day-body">
+      <div class="goal-box">&#127919; Ao fim do dia, você terá acompanhado atendimentos reais e tirado suas dúvidas com o Gabriel.</div>
+      <div class="tl-item">
+        <div class="tl-time">09:00 – 10:00</div>
+        <div class="tl-content">
+          <div class="tl-title">Revisão das dúvidas do documento</div>
+          <div class="tl-resp">Responsável: Gabriel</div>
+          <div class="tl-link"><a href="#" id="link-salinha">&#x1F4F9; Abrir salinha do meet</a></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">10:00 – 12:00</div>
+        <div class="tl-content">
+          <div class="tl-title">Acompanhamento de atendimentos</div>
+          <div class="tl-resp">Responsável: Gabriel</div>
+        </div>
+      </div>
+      <div class="tl-item lunch">
+        <div class="tl-time">13:00 – 14:00</div>
+        <div class="tl-content"><div class="tl-title" style="color:var(--text3)">&#x1F374; Almoço</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">14:00 – 17:00</div>
+        <div class="tl-content">
+          <div class="tl-title">Prática supervisionada</div>
+          <div class="tl-resp">Responsável: Gabriel</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">17:00 – 18:00</div>
+        <div class="tl-content">
+          <div class="tl-title">Alinhamento e dúvidas finais</div>
+          <div class="tl-resp">Entrega: registro de dúvidas e pontos de atenção</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card" id="day4">
+    <div class="day-header" onclick="toggleCard('day4')">
+      <div class="day-num">D4</div>
+      <div class="day-meta">
+        <div class="day-title">Voo solo com suporte</div>
+        <div class="day-sub">Atendimentos independentes + feedback final</div>
+      </div>
+      <span class="chevron">&#8964;</span>
+    </div>
+    <div class="day-body">
+      <div class="goal-box">&#127919; Ao fim do onboarding, você estará apto(a) a realizar atendimentos de forma independente com suporte da equipe.</div>
+      <div class="tl-item">
+        <div class="tl-time">09:00 – 12:00</div>
+        <div class="tl-content">
+          <div class="tl-title">Prática supervisionada</div>
+          <div class="tl-resp">Responsável: Gabriel</div>
+          <div class="tl-link"><a href="#" id="link-salinha2">&#x1F4F9; Abrir salinha do meet</a></div>
+        </div>
+      </div>
+      <div class="tl-item lunch">
+        <div class="tl-time">12:00 – 13:00</div>
+        <div class="tl-content"><div class="tl-title" style="color:var(--text3)">&#x1F374; Almoço</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">13:00 – 17:00</div>
+        <div class="tl-content">
+          <div class="tl-title">Atendimentos independentes com suporte</div>
+          <div class="tl-resp">Responsável: Gabriel</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">17:00 – 18:00</div>
+        <div class="tl-content">
+          <div class="tl-title">Feedback final com o Gabriel</div>
+          <div class="tl-resp">Entrega: avaliação de reação do onboarding preenchida</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CARTILHA -->
+<div id="cartilha" class="panel">
+  <div id="modules-container"></div>
+</div>
+
+<!-- LINKS -->
+<div id="links" class="panel">
+  <div class="links-toolbar">
+    <button class="edit-toggle-btn" id="edit-toggle-btn" onclick="toggleEditMode()">
+      ✏️ Editar links
+    </button>
+  </div>
+  <div class="links-grid" id="links-grid"></div>
+</div>
+
+<!-- ETAPAS -->
+<div id="etapas" class="panel">
+  <p style="font-size:13px;color:var(--text2);margin-bottom:16px;">Checklist interno da equipe para preparar a chegada do novo colaborador.</p>
+  <div class="int-item"><span class="int-status">✅</span><span class="int-text done">Alinhar com o Jonas a data de entrada</span></div>
+  <div class="int-item"><span class="int-status">✅</span><span class="int-text done">Validação do cronograma</span></div>
+  <div class="int-item"><span class="int-status">✅</span><span class="int-text done">Inserção nos grupos do G-Chat</span></div>
+  <div class="int-item"><span class="int-status">✅</span><span class="int-text done">Inserção na agenda semanal do time</span></div>
+  <div class="int-item"><span class="int-status">✅</span><span class="int-text done">Validação do documento</span></div>
+  <div class="int-item"><span class="int-status">✅</span><span class="int-text done">Dashboard com métricas do colaborador (Jonas)</span></div>
+  <div class="int-item"><span class="int-status">⏳</span><span class="int-text">Solicitação de acessos – HubSpot | Superlógica | Admin (Jonas)</span></div>
+  <div class="internal-note">🔒 Este painel é para uso interno da equipe. As etapas com ✅ já foram concluídas.</div>
+</div>
+
+<script>
+const LINKS_DATA = [
+  { id: 'manual',      icon: '📖', name: 'Manual de Apoio',       desc: 'Orientações e passo a passo das principais funcionalidades.' },
+  { id: 'hubspot',     icon: '🎫', name: 'HubSpot',               desc: 'Gestão e acompanhamento de tickets de atendimento.' },
+  { id: 'jira',        icon: '📋', name: 'Jira',                  desc: 'Gestão interna de demandas e informações dos apps.' },
+  { id: 'superlogica', icon: '💰', name: 'Superlógica',           desc: 'Consultas financeiras, boletos e informações da igreja.' },
+  { id: 'admin',       icon: '⚙️', name: 'Admin inChurch',        desc: 'Plataforma administrativa principal com login admin.' },
+  { id: 'backoffice',  icon: '🗄️', name: 'BackOffice',            desc: 'Consulta de usuários, e-mail, perfil de acesso e dados.' },
+  { id: 'napratica',   icon: '🎬', name: 'Na Prática',            desc: 'Portal de treinamentos com vídeos e conteúdos do painel.' },
+  { id: 'atos6',       icon: '⛪', name: 'Atos 6',                desc: 'Plataforma parceira incorporada pela inChurch.' },
+  { id: 'baseconhec',  icon: '📚', name: 'Base de Conhecimento',  desc: 'Artigos e tutoriais para compartilhar com clientes.' },
+  { id: 'precif',      icon: '💲', name: 'Precificação',          desc: 'Planilha com valores e características dos planos.' },
+  { id: 'formfin',     icon: '📝', name: 'Formulário Financeiro', desc: 'Registro de solicitações internas financeiras.' },
+];
+
+const MODULES = [
+  { id: 'igrejas', icon: '⛪', name: 'Módulo – Igrejas', items: [
+    { id: 'ig1', label: 'Acessar a área de denominação, verificar os campos e conteúdos' },
+    { id: 'ig2', label: 'Acessar Regionais, verificar campos e testar edições' },
+    { id: 'ig3', label: 'Acessar Igrejas, verificar campos e testar edições' }
+  ], questions: [{ id: 'q_ig1', label: '✏️ Qual a diferença entre denominação e regional?' }]},
+  { id: 'pessoas', icon: '👥', name: 'Módulo – Pessoas', items: [
+    { id: 'pe1', label: 'Aba Geral → verificar campos de novos perfis e alterações de perfil' },
+    { id: 'pe2', label: 'Verificar a área de importação de membros' },
+    { id: 'pe3', label: 'Cadastrar um membro de teste e inserir o print como resposta' },
+    { id: 'pe4', label: 'Criar um novo visitante ou frequentador' },
+    { id: 'pe5', label: 'Criar um histórico de membros e vincular a um membro' },
+    { id: 'pe6', label: 'Acessar o perfil do membro e verificar o histórico em "Mais"' },
+    { id: 'pe7', label: 'Baixar a planilha modelo de importação e ler o manual junto' }
+  ], questions: []},
+  { id: 'financeiro', icon: '💰', name: 'Módulo – Financeiro', items: [
+    { id: 'fi1', label: 'Acessar lançamentos e verificar entradas e saídas' },
+    { id: 'fi2', label: 'Usar filtros e pesquisa para verificar como funcionam as buscas' },
+    { id: 'fi3', label: 'Criar uma entrada' },
+    { id: 'fi4', label: 'Criar uma saída' },
+    { id: 'fi5', label: 'Criar um fornecedor' },
+    { id: 'fi6', label: 'Criar uma doação' },
+    { id: 'fi7', label: 'Acessar relatórios e conferir cada um' },
+    { id: 'fi8', label: 'Configurações → Criar uma conta controle' },
+    { id: 'fi9', label: 'Configurações → Criar categoria e subcategoria' },
+    { id: 'fi10', label: 'Configurações → Criar centro de custo e unidade de negócio' }
+  ], questions: []},
+  { id: 'cuidado', icon: '💚', name: 'Módulo – Cuidado', items: [
+    { id: 'cu1', label: 'Acessar sentimentos e visualizar as respostas' },
+    { id: 'cu2', label: 'Acessar pedidos de oração e criar um novo pedido' },
+    { id: 'cu3', label: 'Clicar em "ver mais" em um pedido e verificar as informações' },
+    { id: 'cu4', label: 'Acessar testemunhos e criar um novo testemunho' },
+    { id: 'cu5', label: 'Clicar em "ver mais" em um testemunho e verificar as informações' }
+  ], questions: []}
+];
+
+const STORAGE_KEY = 'inchurch_onboarding_v1';
+const state = { checks: {}, answers: {}, linkUrls: {} };
+let editMode = false;
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) { const s = JSON.parse(raw); Object.assign(state, s); }
+  } catch(e) {}
+}
+
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+/* ── LINKS ── */
+function buildLinks() {
+  const grid = document.getElementById('links-grid');
+  grid.innerHTML = '';
+  LINKS_DATA.forEach(lk => {
+    const url = state.linkUrls[lk.id] || '';
+    const hasLink = url.length > 0;
+    const card = document.createElement('div');
+    card.className = 'lk-card' + (hasLink ? '' : ' no-link');
+    card.id = 'lk-' + lk.id;
+    card.innerHTML = `
+      <div class="lk-icon">${lk.icon}</div>
+      <div class="lk-name">${lk.name}</div>
+      <div class="lk-desc">${lk.desc}</div>
+      <div class="lk-status ${hasLink ? 'ok' : 'missing'}">
+        ${hasLink ? '✓ Link configurado' : 'Link não configurado'}
+      </div>
+      <div class="lk-edit-area" id="edit-${lk.id}">
+        <input type="url" id="input-${lk.id}" placeholder="Cole a URL aqui..." value="${url}">
+        <button class="lk-save-link" onclick="saveLink('${lk.id}')">Salvar</button>
+      </div>`;
+    card.onclick = (e) => {
+      if (editMode || e.target.closest('.lk-edit-area')) return;
+      const u = state.linkUrls[lk.id];
+      if (u) window.open(u, '_blank');
+    };
+    grid.appendChild(card);
+  });
+  applyEditMode();
+}
+
+function toggleEditMode() {
+  editMode = !editMode;
+  const btn = document.getElementById('edit-toggle-btn');
+  btn.classList.toggle('editing', editMode);
+  btn.textContent = editMode ? '✅ Concluir edição' : '✏️ Editar links';
+  applyEditMode();
+}
+
+function applyEditMode() {
+  LINKS_DATA.forEach(lk => {
+    const card = document.getElementById('lk-' + lk.id);
+    const editArea = document.getElementById('edit-' + lk.id);
+    if (!card || !editArea) return;
+    card.classList.toggle('edit-mode', editMode);
+    editArea.classList.toggle('show', editMode);
+  });
+}
+
+function saveLink(id) {
+  const input = document.getElementById('input-' + id);
+  if (!input) return;
+  state.linkUrls[id] = input.value.trim();
+  saveState();
+  buildLinks();
+  if (editMode) applyEditMode();
+}
+
+/* ── MODULES ── */
+function buildModules() {
+  const container = document.getElementById('modules-container');
+  container.innerHTML = '';
+  MODULES.forEach(mod => {
+    const total = mod.items.length;
+    const done = mod.items.filter(i => state.checks[i.id]).length;
+    const complete = done === total;
+    const card = document.createElement('div');
+    card.className = 'mod-card';
+    card.id = 'mod-' + mod.id;
+    const itemsHTML = mod.items.map(item => `
+      <div class="check-item" onclick="toggleCheck('${item.id}','mod-${mod.id}')">
+        <div class="check-box ${state.checks[item.id] ? 'checked' : ''}" id="cb-${item.id}"></div>
+        <span class="check-label ${state.checks[item.id] ? 'done' : ''}" id="lbl-${item.id}">${item.label}</span>
+      </div>`).join('');
+    const questionsHTML = mod.questions.map(q => `
+      <div class="q-area">
+        <div class="q-label">${q.label}</div>
+        <textarea id="ta-${q.id}" placeholder="Escreva sua resposta aqui...">${state.answers[q.id] || ''}</textarea>
+        <div style="display:flex;align-items:center;">
+          <button class="save-btn" onclick="saveAnswer('${q.id}')">💾 Salvar resposta</button>
+          <span class="saved-tag" id="saved-${q.id}">✓ Salvo</span>
+        </div>
+      </div>`).join('');
+    card.innerHTML = `
+      <div class="mod-header" onclick="toggleCard('mod-${mod.id}')">
+        <span class="mod-icon">${mod.icon}</span>
+        <span class="mod-name">${mod.name}</span>
+        <span class="mod-badge ${complete ? 'complete' : ''}" id="badge-mod-${mod.id}">${done}/${total}</span>
+        <span class="chevron">&#8964;</span>
+      </div>
+      <div class="mod-body">${itemsHTML}${questionsHTML}</div>`;
+    container.appendChild(card);
+  });
+}
+
+function toggleCheck(itemId, modCardId) {
+  state.checks[itemId] = !state.checks[itemId];
+  const cb = document.getElementById('cb-' + itemId);
+  const lbl = document.getElementById('lbl-' + itemId);
+  if (cb) cb.classList.toggle('checked', state.checks[itemId]);
+  if (lbl) lbl.classList.toggle('done', state.checks[itemId]);
+  updateBadge(modCardId);
+  updateProgress();
+  saveState();
+}
+
+function updateBadge(modCardId) {
+  const mod = MODULES.find(m => 'mod-' + m.id === modCardId);
+  if (!mod) return;
+  const total = mod.items.length;
+  const done = mod.items.filter(i => state.checks[i.id]).length;
+  const badge = document.getElementById('badge-' + modCardId);
+  if (badge) { badge.textContent = done + '/' + total; badge.classList.toggle('complete', done === total); }
+}
+
+function saveAnswer(qId) {
+  const ta = document.getElementById('ta-' + qId);
+  if (ta) state.answers[qId] = ta.value;
+  saveState();
+  const tag = document.getElementById('saved-' + qId);
+  if (tag) { tag.style.opacity = '1'; setTimeout(() => { tag.style.opacity = '0'; }, 2000); }
+}
+
+function updateProgress() {
+  const allItems = MODULES.flatMap(m => m.items);
+  const total = allItems.length;
+  const done = allItems.filter(i => state.checks[i.id]).length;
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-text').textContent = done + ' de ' + total + ' etapas concluídas';
+  document.getElementById('prog-pct').textContent = pct + '%';
+}
+
+function toggleCard(id) { document.getElementById(id).classList.toggle('open'); }
+
+function switchTab(name, el) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(name).classList.add('active');
+  el.classList.add('active');
+}
+
+loadState();
+buildModules();
+buildLinks();
+updateProgress();
+</script>
+</body>
+</html>
