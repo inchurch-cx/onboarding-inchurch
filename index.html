@@ -79,9 +79,12 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .org-branch-line{width:2px;height:24px;background:var(--border2);}
 .org-node{border:1px solid var(--border2);border-radius:12px;background:var(--card);width:100%;cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s;overflow:hidden;}
 .org-node:hover{border-color:var(--g);box-shadow:0 4px 16px rgba(90,181,46,0.12);transform:translateY(-2px);}
-.org-node-header{padding:12px;background:var(--card2);border-bottom:1px solid var(--border);}
+.org-node-header{padding:12px;background:var(--card2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;}
 .org-node-icon{font-size:20px;margin-bottom:4px;}
 .org-node-name{font-size:12px;font-weight:700;color:var(--text);}
+.org-node-hint{font-size:10px;color:var(--text3);display:flex;align-items:center;gap:3px;margin-top:2px;}
+.org-node-chevron{font-size:14px;color:var(--g);transition:transform .2s;flex-shrink:0;}
+.org-node.open .org-node-chevron{transform:rotate(180deg);}
 .org-node-body{display:none;padding:12px;}
 .org-node.open .org-node-body{display:block;}
 .org-node-desc{font-size:11px;color:var(--text2);line-height:1.5;margin-bottom:10px;}
@@ -342,7 +345,7 @@ function toggleOrg(id){
       <div class="org-branches">
         <div class="org-branch"><div class="org-branch-line"></div>
           <div class="org-node" id="org-suporte" onclick="toggleOrg('org-suporte')">
-            <div class="org-node-header"><div class="org-node-icon">🎧</div><div class="org-node-name">Suporte</div></div>
+            <div class="org-node-header"><div><div class="org-node-icon">🎧</div><div class="org-node-name">Suporte</div><div class="org-node-hint">Toque para saber mais</div></div><span class="org-node-chevron">&#8964;</span></div>
             <div class="org-node-body">
               <div class="org-node-desc">Atende demandas operacionais e técnicas, garantindo experiência rápida, clara e eficiente.</div>
               <div class="org-resp-title">Responsabilidades</div>
@@ -355,7 +358,7 @@ function toggleOrg(id){
         </div>
         <div class="org-branch"><div class="org-branch-line"></div>
           <div class="org-node" id="org-onboarding" onclick="toggleOrg('org-onboarding')">
-            <div class="org-node-header"><div class="org-node-icon">🚀</div><div class="org-node-name">Onboarding</div></div>
+            <div class="org-node-header"><div><div class="org-node-icon">🚀</div><div class="org-node-name">Onboarding</div><div class="org-node-hint">Toque para saber mais</div></div><span class="org-node-chevron">&#8964;</span></div>
             <div class="org-node-body">
               <div class="org-node-desc">Conduz a entrada do cliente, garantindo implementação organizada e boa primeira experiência.</div>
               <div class="org-resp-title">Responsabilidades</div>
@@ -368,7 +371,7 @@ function toggleOrg(id){
         </div>
         <div class="org-branch"><div class="org-branch-line"></div>
           <div class="org-node" id="org-ongoing" onclick="toggleOrg('org-ongoing')">
-            <div class="org-node-header"><div class="org-node-icon">🔄</div><div class="org-node-name">Ongoing</div></div>
+            <div class="org-node-header"><div><div class="org-node-icon">🔄</div><div class="org-node-name">Ongoing</div><div class="org-node-hint">Toque para saber mais</div></div><span class="org-node-chevron">&#8964;</span></div>
             <div class="org-node-body">
               <div class="org-node-desc">Acompanha o cliente após implementação, atuando na evolução contínua e aumento do valor percebido.</div>
               <div class="org-resp-title">Responsabilidades</div>
@@ -381,7 +384,7 @@ function toggleOrg(id){
         </div>
         <div class="org-branch"><div class="org-branch-line"></div>
           <div class="org-node" id="org-retencao" onclick="toggleOrg('org-retencao')">
-            <div class="org-node-header"><div class="org-node-icon">🛡️</div><div class="org-node-name">Retenção</div></div>
+            <div class="org-node-header"><div><div class="org-node-icon">🛡️</div><div class="org-node-name">Retenção</div><div class="org-node-hint">Toque para saber mais</div></div><span class="org-node-chevron">&#8964;</span></div>
             <div class="org-node-body">
               <div class="org-node-desc">Garante a permanência dos clientes, atuando preventivamente para reduzir riscos.</div>
               <div class="org-resp-title">Responsabilidades</div>
@@ -394,7 +397,7 @@ function toggleOrg(id){
         </div>
         <div class="org-branch"><div class="org-branch-line"></div>
           <div class="org-node" id="org-ka" onclick="toggleOrg('org-ka')">
-            <div class="org-node-header"><div class="org-node-icon">⭐</div><div class="org-node-name">Key Account</div></div>
+            <div class="org-node-header"><div><div class="org-node-icon">⭐</div><div class="org-node-name">Key Account</div><div class="org-node-hint">Toque para saber mais</div></div><span class="org-node-chevron">&#8964;</span></div>
             <div class="org-node-body">
               <div class="org-node-desc">Responsável pelo acompanhamento estratégico dos clientes mais relevantes.</div>
               <div class="org-resp-title">Responsabilidades</div>
@@ -439,12 +442,12 @@ function toggleOrg(id){
     </div>
     <div class="day-body">
       <div class="goal-box">🎯 Objetivo: Conhecer os produtos, sistemas e processos utilizados no atendimento, desenvolvendo a base necessária para realizar os primeiros testes práticos.</div>
-      <div class="tl-item"><div class="tl-time">09:00 – 09:30</div><div class="tl-content"><div class="tl-title">Continuação Esther + Gabriel e orientações da prática no site</div><div class="tl-resp">Responsável: Gabriel + Esther</div><div class="tl-link"><a href="#">📹 Inserir link do meet</a></div></div></div>
-      <div class="tl-item"><div class="tl-time">09:30 – 13:00</div><div class="tl-content"><div class="tl-title">Colaboradores seguem na prática do site</div><div class="tl-resp">Autodirigido</div></div></div>
+      <div class="tl-item"><div class="tl-time">09:00 – 09:30</div><div class="tl-content"><div class="tl-title">Esther + Gabriel e orientações da prática</div><div class="tl-resp">Responsável: Gabriel + Esther</div><div class="tl-link"><a href="#">📹 Inserir link do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">09:30 – 13:00</div><div class="tl-content"><div class="tl-title">Atividade Prática</div><div class="tl-resp">Autodirigido</div></div></div>
       <div class="tl-item lunch"><div class="tl-time">13:00 – 14:00</div><div class="tl-content"><div class="tl-title" style="color:var(--text3)">🍴 Almoço</div></div></div>
-      <div class="tl-item"><div class="tl-time">15:00 – 15:30</div><div class="tl-content"><div class="tl-title">Acompanhamento - dúvidas e + apoio</div><div class="tl-resp">Responsável: Gabriel + Esther</div><div class="tl-link"><a href="#">📹 Inserir link do meet</a></div></div></div>
-      <div class="tl-item"><div class="tl-time">15:30 – 17:00</div><div class="tl-content"><div class="tl-title">Colaboradores seguem na prática do site</div><div class="tl-resp">Autodirigido</div></div></div>
-      <div class="tl-item"><div class="tl-time">17:00 – 17:30</div><div class="tl-content"><div class="tl-title">Acompanhamento - dúvidas e + apoio</div><div class="tl-resp">Responsável: Gabriel + Esther</div><div class="tl-link"><a href="#">📹 Inserir link do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">15:00 – 15:30</div><div class="tl-content"><div class="tl-title">Revisão e Esclarecimento de Dúvidas</div><div class="tl-resp">Responsável: Gabriel + Esther</div><div class="tl-link"><a href="#">📹 Inserir link do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">15:30 – 17:00</div><div class="tl-content"><div class="tl-title">Atividade Prática</div><div class="tl-resp">Autodirigido</div></div></div>
+      <div class="tl-item"><div class="tl-time">17:00 – 17:30</div><div class="tl-content"><div class="tl-title">Revisão e Esclarecimento de Dúvidas</div><div class="tl-resp">Responsável: Gabriel + Esther</div><div class="tl-link"><a href="#">📹 Inserir link do meet</a></div></div></div>
       <div class="tl-item"><div class="tl-time">18:00</div><div class="tl-content"><div class="tl-title" style="color:var(--text3)">Encerramento</div></div></div>
     </div>
   </div>
@@ -457,9 +460,9 @@ function toggleOrg(id){
     </div>
     <div class="day-body">
       <div class="goal-box">🎯 Objetivo: Aprofundar o conhecimento das ferramentas e funcionalidades, realizando atividades práticas em ambiente de teste.</div>
-      <div class="tl-item"><div class="tl-time">09:00 – 13:00</div><div class="tl-content"><div class="tl-title">Colaboradores seguem na prática do site</div><div class="tl-resp">Autodirigido</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">09:00 – 13:00</div><div class="tl-content"><div class="tl-title">Atividade Prática</div><div class="tl-resp">Autodirigido</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
       <div class="tl-item lunch"><div class="tl-time">13:00 – 14:00</div><div class="tl-content"><div class="tl-title" style="color:var(--text3)">🍴 Almoço</div></div></div>
-      <div class="tl-item"><div class="tl-time">15:00 – 15:30</div><div class="tl-content"><div class="tl-title">Acompanhamento - dúvidas e + apoio</div><div class="tl-resp">Responsável: Gabriel + Esther</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">15:00 – 15:30</div><div class="tl-content"><div class="tl-title">Revisão e Esclarecimento de Dúvidas</div><div class="tl-resp">Responsável: Gabriel + Esther</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
       <div class="tl-item"><div class="tl-time">16:30 – 17:00</div><div class="tl-content"><div class="tl-title">Treinamento do módulo de preferências do Painel</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
       <div class="tl-item"><div class="tl-time">18:00</div><div class="tl-content"><div class="tl-title" style="color:var(--text3)">Encerramento</div></div></div>
     </div>
@@ -473,10 +476,10 @@ function toggleOrg(id){
     </div>
     <div class="day-body">
       <div class="goal-box">🎯 Objetivo: Aplicar os conhecimentos adquiridos em simulações de atendimento, desenvolvendo raciocínio para diagnóstico e resolução de demandas.</div>
-      <div class="tl-item"><div class="tl-time">09:00 – 11:00</div><div class="tl-content"><div class="tl-title">Feedback de retorno</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
-      <div class="tl-item"><div class="tl-time">11:00 – 13:00</div><div class="tl-content"><div class="tl-title">Treinamento HubSpot</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">09:00 – 11:00</div><div class="tl-content"><div class="tl-title">Feedback</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">11:00 – 13:00</div><div class="tl-content"><div class="tl-title">Treinamento Hubspot</div><div class="tl-resp">Responsável: Gabriel</div></div></div>
       <div class="tl-item lunch"><div class="tl-time">13:00 – 14:00</div><div class="tl-content"><div class="tl-title" style="color:var(--text3)">🍴 Almoço</div></div></div>
-      <div class="tl-item"><div class="tl-time">14:00 – 18:00</div><div class="tl-content"><div class="tl-title">Prática com o Gabriel – visualizando os atendimentos em tempo real</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">14:00 – 18:00</div><div class="tl-content"><div class="tl-title">Prática acompanhada com o Gabriel</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
       <div class="tl-item"><div class="tl-time">18:00</div><div class="tl-content"><div class="tl-title" style="color:var(--text3)">Encerramento</div></div></div>
     </div>
   </div>
@@ -484,13 +487,12 @@ function toggleOrg(id){
   <div class="day-card" id="day5">
     <div class="day-header" onclick="toggleCard('day5')">
       <div class="day-num">5</div>
-      <div class="day-meta"><div class="day-title-row"><span class="day-title">Prática do Colaborador com auxílio do Gabriel 🙌</span><span class="day-date">14/07</span></div><div class="day-sub">Fase 4 – Atendimento Assistido · Iniciar atendimentos com acompanhamento</div></div>
+      <div class="day-meta"><div class="day-title-row"><span class="day-title">Prática do Colaborador com auxílio do Gabriel 💻</span><span class="day-date">14/07</span></div><div class="day-sub">Fase 4 – Atendimento Assistido · Iniciar atendimentos com acompanhamento</div></div>
       <span class="chevron">&#8964;</span>
     </div>
     <div class="day-body">
       <div class="goal-box">🎯 Objetivo: Iniciar atendimentos assistidos, colocando em prática os processos de suporte com acompanhamento do time.</div>
-      <div class="tl-item"><div class="tl-time">09:00 – 18:00</div><div class="tl-content"><div class="tl-title">Atendimentos do colaborador com o auxílio do Gabriel</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
-      <div class="tl-item"><div class="tl-time">Entrega</div><div class="tl-content"><div class="tl-title" style="color:var(--gd);">📋 Avaliação de reação do onboarding preenchida</div></div></div>
+      <div class="tl-item"><div class="tl-time">09:00 – 18:00</div><div class="tl-content"><div class="tl-title">Atendimentos do colaborador com o apoio do Gabriel</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
     </div>
   </div>
 
@@ -502,19 +504,19 @@ function toggleOrg(id){
     </div>
     <div class="day-body">
       <div class="goal-box">🎯 Objetivo: Realizar atendimentos com maior autonomia, reforçando boas práticas, comunicação e registro das informações.</div>
-      <div class="tl-item"><div class="tl-time">09:00 – 18:00</div><div class="tl-content"><div class="tl-title">Atendimentos do colaborador com o auxílio do Gabriel</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">09:00 – 18:00</div><div class="tl-content"><div class="tl-title">Atendimentos do colaborador com o apoio do Gabriel</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
     </div>
   </div>
 
   <div class="day-card" id="day7">
     <div class="day-header" onclick="toggleCard('day7')">
       <div class="day-num">7</div>
-      <div class="day-meta"><div class="day-title-row"><span class="day-title">Finalização e Encerramento 🏆</span><span class="day-date">16/07</span></div><div class="day-sub">Fase 5 – Validação e Autonomia · Consolidar aprendizados</div></div>
+      <div class="day-meta"><div class="day-title-row"><span class="day-title">Validação e Encerramento 🏆</span><span class="day-date">16/07</span></div><div class="day-sub">Fase 5 – Validação e Autonomia · Consolidar aprendizados</div></div>
       <span class="chevron">&#8964;</span>
     </div>
     <div class="day-body">
       <div class="goal-box">🎯 Objetivo: Consolidar os aprendizados, validar conhecimentos e preparar o colaborador para atuar com autonomia no suporte.</div>
-      <div class="tl-item"><div class="tl-time">09:00 – 18:00</div><div class="tl-content"><div class="tl-title">Revisão dos principais aprendizados · Feedback do tutor · Feedback do colaborador</div><div class="tl-resp">Responsável: Gabriel + Esther</div></div></div>
+      <div class="tl-item"><div class="tl-time">09:00 – 18:00</div><div class="tl-content"><div class="tl-title">Revisão dos principais aprendizados; Feedback do tutor; Feedback do colaborador.</div><div class="tl-resp" style="color:var(--gd);">📋 Entrega: Avaliação de reação do onboarding preenchida</div></div></div>
       <div class="tl-item">
         <div class="tl-time">Avaliação final</div>
         <div class="tl-content">
@@ -617,9 +619,6 @@ function toggleOrg(id){
     <button class="stab" onclick="switchSubTab('glossario-sub',this)">📖 Glossário</button>
   </div>
   <div id="links-sub" class="sub-panel active">
-    <div class="links-toolbar">
-      <button class="edit-btn" id="edit-btn" onclick="toggleEditMode()">✏️ Editar links</button>
-    </div>
     <div class="links-grid" id="links-grid"></div>
   </div>
   <div id="glossario-sub" class="sub-panel">
@@ -892,7 +891,6 @@ const MODULES_DOC=[
 
 const STORAGE_KEY='inchurch_onboarding_v4';
 const state={checks:{},answers:{},linkUrls:{},nome:'',email:''};
-let editMode=false;
 
 function loadState(){try{var r=localStorage.getItem(STORAGE_KEY);if(r)Object.assign(state,JSON.parse(r));}catch(e){}}
 function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){}}
@@ -1066,40 +1064,15 @@ function updateBadge(modCardId){
 function buildLinks(){
   var grid=document.getElementById('links-grid');grid.innerHTML='';
   LINKS_DATA.forEach(function(lk){
-    var url=lk.url||state.linkUrls[lk.id]||'';var hasLink=url.length>0;var isFixed=!!lk.url;
+    var url=lk.url||'';var hasLink=url.length>0;
     var card=document.createElement('div');
     card.className='lk-card'+(hasLink?'':' no-link');card.id='lk-'+lk.id;
-    var editAreaHTML=isFixed?'':
-      '<div class="lk-edit-area" id="edit-'+lk.id+'">'+
-        '<input type="url" id="input-'+lk.id+'" placeholder="Cole a URL aqui..." value="'+url+'">'+
-        '<button class="lk-save-link" onclick="saveLink(\''+lk.id+'\')">Salvar</button>'+
-      '</div>';
     card.innerHTML='<div class="lk-icon">'+lk.icon+'</div>'+
       '<div class="lk-name">'+lk.name+'</div><div class="lk-desc">'+lk.desc+'</div>'+
-      '<div class="lk-status '+(hasLink?'ok':'missing')+'">'+(hasLink?'✓ Link configurado':'Link não configurado')+'</div>'+
-      editAreaHTML;
-    card.onclick=function(e){if(editMode||e.target.closest('.lk-edit-area'))return;if(url)window.open(url,'_blank');};
+      '<div class="lk-status '+(hasLink?'ok':'missing')+'">'+(hasLink?'✓ Link configurado':'Link não configurado')+'</div>';
+    card.onclick=function(){if(url)window.open(url,'_blank');};
     grid.appendChild(card);
-  });applyEditMode();
-}
-function toggleEditMode(){
-  editMode=!editMode;
-  var btn=document.getElementById('edit-btn');
-  btn.classList.toggle('editing',editMode);
-  btn.textContent=editMode?'✅ Concluir':'✏️ Editar links';
-  applyEditMode();
-}
-function applyEditMode(){
-  LINKS_DATA.forEach(function(lk){
-    var card=document.getElementById('lk-'+lk.id);
-    var ea=document.getElementById('edit-'+lk.id);
-    if(card)card.classList.toggle('edit-mode',editMode);
-    if(ea)ea.classList.toggle('show',editMode);
   });
-}
-function saveLink(id){
-  var inp=document.getElementById('input-'+id);if(!inp)return;
-  state.linkUrls[id]=inp.value.trim();saveState();buildLinks();if(editMode)applyEditMode();
 }
 
 function renderGloss(items){
