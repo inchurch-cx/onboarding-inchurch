@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Onboarding · Suporte N1 · inChurch</title>
+<title>Onboarding · Suporte · inChurch</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -91,13 +91,15 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .org-resp-text{font-size:11px;color:var(--text2);line-height:1.4;}
 
 /* CRONOGRAMA */
-.day-card{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--card);margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,0.04);transition:border-color .2s,box-shadow .2s;}
+.day-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--card);margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,0.04);transition:border-color .2s,box-shadow .2s;}
 .day-card:hover{border-color:var(--border2);box-shadow:0 2px 12px rgba(90,181,46,0.08);}
-.day-header{padding:16px 20px;cursor:pointer;display:flex;align-items:center;gap:14px;background:var(--card2);user-select:none;}
-.day-pill{padding:4px 12px;border-radius:99px;font-size:11px;font-weight:700;letter-spacing:.06em;background:var(--gl);color:var(--gd);border:1px solid var(--gb);flex-shrink:0;}
-.day-meta{flex:1;}
-.day-title{font-size:15px;font-weight:600;color:var(--text);}
-.day-sub{font-size:12px;color:var(--text3);margin-top:3px;}
+.day-header{padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:16px;background:transparent;user-select:none;}
+.day-num{width:38px;height:38px;border-radius:11px;background:var(--dark);color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.day-meta{flex:1;min-width:0;}
+.day-title-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.day-title{font-size:14px;font-weight:700;color:var(--text);}
+.day-date{font-size:11px;font-weight:700;color:var(--gd);background:var(--gl);padding:2px 9px;border-radius:99px;border:1px solid var(--gb);}
+.day-sub{font-size:12px;color:var(--text3);margin-top:4px;}
 .chevron{font-size:20px;color:var(--text3);transition:transform .2s;display:inline-block;}
 .day-card.open .chevron,.mod-card.open .chevron{transform:rotate(180deg);}
 .day-body{display:none;border-top:1px solid var(--border);}
@@ -283,7 +285,6 @@ function toggleOrg(id){
     <div class="logo-word"><em>in</em>church</div>
   </div>
   <div class="topbar-divider"></div>
-  <span class="topbar-label">Suporte N1</span>
   <div class="topbar-nav">
     <button class="tnav active" onclick="switchTab('home',this)">Início</button>
     <button class="tnav" onclick="switchTab('onboarding',this)">Onboarding</button>
@@ -295,7 +296,7 @@ function toggleOrg(id){
 <!-- HOME - FUNDO CLARO COMPLETO -->
 <div id="home" class="home-panel active">
   <div class="home-inner">
-    <div class="home-hero-tag">👋 Bem-vindo(a) à equipe de Suporte</div>
+    <div class="home-hero-tag">👋 Bem-vindo(a) à equipe!</div>
     <h1 class="home-title">Você faz parte de algo <span>maior</span></h1>
     <p class="home-sub">Aqui na inChurch, cada atendimento é uma oportunidade de transformar a experiência de uma igreja. Estamos muito felizes em ter você conosco!</p>
 
@@ -331,11 +332,11 @@ function toggleOrg(id){
     </div>
 
     <div class="home-divider"></div>
-    <div class="section-label">estrutura · customer success</div>
-    <p style="font-size:13px;color:var(--text2);margin-bottom:2rem;line-height:1.7;max-width:640px;">A área de Customer Success tem como missão garantir que cada cliente tenha uma jornada de sucesso, desde o primeiro contato até a consolidação do relacionamento. Clique em cada área para conhecer mais.</p>
+    <div class="section-label">estrutura · customer experience</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:2rem;line-height:1.7;max-width:640px;">A área de Customer Experience tem como missão garantir que cada cliente tenha uma jornada de sucesso, desde o primeiro contato até a consolidação do relacionamento. Clique em cada área para conhecer mais.</p>
 
     <div class="org-wrap">
-      <div class="org-root">Customer Success <span>inChurch</span></div>
+      <div class="org-root">Customer Experience <span>inChurch</span></div>
       <div class="org-connector-v"></div>
       <div class="org-connector-h"></div>
       <div class="org-branches">
@@ -411,103 +412,156 @@ function toggleOrg(id){
 
 <!-- ONBOARDING -->
 <div id="onboarding" class="panel">
-  <div class="section-label">4 dias de onboarding</div>
+  <div class="section-label">7 dias de onboarding</div>
+
   <div class="day-card" id="day1">
     <div class="day-header" onclick="toggleCard('day1')">
-      <div class="day-pill">DIA 1</div>
-      <div class="day-meta"><div class="day-title">Boas Vindas</div><div class="day-sub">Treinamento assíncrono – Plataforma Na Prática</div></div>
+      <div class="day-num">1</div>
+      <div class="day-meta"><div class="day-title-row"><span class="day-title">Boas Vindas 💚</span><span class="day-date">08/07</span></div><div class="day-sub">Fase 1 – Integração · Conhecer a empresa, ferramentas e a jornada do suporte</div></div>
       <span class="chevron">&#8964;</span>
     </div>
     <div class="day-body">
-      <div class="tl-item"><div class="tl-time">09:30 – 10:00</div><div class="tl-content"><div class="tl-title">Boas vindas com o Jonas</div><div class="tl-resp">Responsável: Jonas</div><div class="tl-link"><a href="#">📹 Abrir meet</a></div></div></div>
-      <div class="tl-item"><div class="tl-time">10:00 – 13:00</div><div class="tl-content"><div class="tl-title">Treinamento Na Prática Assíncrono</div><div class="tl-resp">Plataforma inChurch</div><div class="tl-link"><a href="https://napratica.inchurch.com.br/conteudos" target="_blank">🔗 Acessar plataforma</a></div><div class="tl-steps">📋 <strong>Como acessar:</strong> Ao clicar no link, clique em <strong>Treinamento do painel de controle</strong>. Você terá acesso a todos os módulos com vídeos práticos e entenderá melhor o nosso produto.</div></div></div>
+      <div class="goal-box">🎯 Objetivo: Conhecer a empresa, principais ferramentas e entender a jornada do suporte.</div>
+      <div class="tl-item"><div class="tl-time">09:30 – 10:00</div><div class="tl-content"><div class="tl-title">Boas vindas com o Jonas e orientações gerais sobre o Onboarding</div><div class="tl-resp">Responsável: Jonas</div><div class="tl-link"><a href="#">📹 Inserir link do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">10:00 – 13:00</div><div class="tl-content"><div class="tl-title">Treinamento Na Prática Assíncrono</div><div class="tl-resp">Plataforma inChurch</div><div class="tl-link"><a href="https://napratica.inchurch.com.br/conteudos" target="_blank">🔗 Acessar plataforma</a></div><div class="tl-steps">📋 <strong>Como acessar:</strong> Ao clicar no link, clique em <strong>Treinamento do painel de controle</strong>. Você terá acesso a todos os módulos com vídeos práticos.</div></div></div>
       <div class="tl-item lunch"><div class="tl-time">13:00 – 14:00</div><div class="tl-content"><div class="tl-title" style="color:var(--text3)">🍴 Almoço</div></div></div>
-      <div class="tl-item"><div class="tl-time">14:00 – 18:00</div><div class="tl-content"><div class="tl-title">Treinamento Na Prática Assíncrono</div><div class="tl-resp">Entrega: conclusão de todos os módulos</div><div class="tl-link"><a href="https://napratica.inchurch.com.br/conteudos" target="_blank">🔗 Acessar plataforma</a></div><div class="tl-steps">📋 <strong>Como acessar:</strong> Ao clicar no link, clique em <strong>Treinamento do painel de controle</strong>. Você terá acesso a todos os módulos com vídeos práticos e entenderá melhor o nosso produto.</div></div></div>
+      <div class="tl-item"><div class="tl-time">14:00 – 17:00</div><div class="tl-content"><div class="tl-title">Treinamento Na Prática Assíncrono</div><div class="tl-resp">Entrega: Acessos liberados + conclusão do treinamento dos módulos</div><div class="tl-link"><a href="https://napratica.inchurch.com.br/conteudos" target="_blank">🔗 Acessar plataforma</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">17:00 – 17:30</div><div class="tl-content"><div class="tl-title">Boas vindas com Esther + Gabriel para apresentar o cronograma/prática e os próximos passos</div><div class="tl-resp">Responsável: Gabriel + Esther</div><div class="tl-link"><a href="#">📹 Inserir link do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">18:00</div><div class="tl-content"><div class="tl-title" style="color:var(--text3)">Encerramento</div></div></div>
     </div>
   </div>
+
   <div class="day-card" id="day2">
     <div class="day-header" onclick="toggleCard('day2')">
-      <div class="day-pill">DIA 2</div>
-      <div class="day-meta"><div class="day-title">Na Prática</div><div class="day-sub">Documento prático com prints e validações</div></div>
+      <div class="day-num">2</div>
+      <div class="day-meta"><div class="day-title-row"><span class="day-title">Na Prática 📚</span><span class="day-date">09/07</span></div><div class="day-sub">Fase 2 – Aprendizado · Conhecer produtos, sistemas e processos</div></div>
       <span class="chevron">&#8964;</span>
     </div>
     <div class="day-body">
-      <div class="goal-box">🎯 Ao fim do dia, você terá seguido todos os passos do documento e inserido os prints de cada etapa.</div>
-      <div class="tl-item"><div class="tl-time">09:00 – 09:30</div><div class="tl-content"><div class="tl-title">Boas vindas com o Gabriel</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Abrir meet</a></div></div></div>
-      <div class="tl-item"><div class="tl-time">09:30 – 12:00</div><div class="tl-content"><div class="tl-title">Na prática – Documento (autodirigido)</div></div></div>
+      <div class="goal-box">🎯 Objetivo: Conhecer os produtos, sistemas e processos utilizados no atendimento, desenvolvendo a base necessária para realizar os primeiros testes práticos.</div>
+      <div class="tl-item"><div class="tl-time">09:00 – 09:30</div><div class="tl-content"><div class="tl-title">Continuação Esther + Gabriel e orientações da prática no site</div><div class="tl-resp">Responsável: Gabriel + Esther</div><div class="tl-link"><a href="#">📹 Inserir link do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">09:30 – 13:00</div><div class="tl-content"><div class="tl-title">Colaboradores seguem na prática do site</div><div class="tl-resp">Autodirigido</div></div></div>
       <div class="tl-item lunch"><div class="tl-time">13:00 – 14:00</div><div class="tl-content"><div class="tl-title" style="color:var(--text3)">🍴 Almoço</div></div></div>
-      <div class="tl-item"><div class="tl-time">14:00 – 18:00</div><div class="tl-content"><div class="tl-title">Na prática – Documento (autodirigido)</div><div class="tl-resp">Entrega: documento completo com todos os prints</div></div></div>
+      <div class="tl-item"><div class="tl-time">15:00 – 15:30</div><div class="tl-content"><div class="tl-title">Acompanhamento | dúvidas + apoio</div><div class="tl-resp">Responsável: Gabriel + Esther</div><div class="tl-link"><a href="#">📹 Inserir link do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">15:30 – 17:00</div><div class="tl-content"><div class="tl-title">Colaboradores seguem na prática do site</div><div class="tl-resp">Autodirigido</div></div></div>
+      <div class="tl-item"><div class="tl-time">17:00 – 17:30</div><div class="tl-content"><div class="tl-title">Acompanhamento | dúvidas + apoio</div><div class="tl-resp">Responsável: Gabriel + Esther</div><div class="tl-link"><a href="#">📹 Inserir link do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">18:00</div><div class="tl-content"><div class="tl-title" style="color:var(--text3)">Encerramento</div></div></div>
     </div>
   </div>
+
   <div class="day-card" id="day3">
     <div class="day-header" onclick="toggleCard('day3')">
-      <div class="day-pill">DIA 3</div>
-      <div class="day-meta"><div class="day-title">Prática com o Gabriel</div><div class="day-sub">Atendimentos reais acompanhados</div></div>
+      <div class="day-num">3</div>
+      <div class="day-meta"><div class="day-title-row"><span class="day-title">Continuação Na Prática 📚</span><span class="day-date">10/07</span></div><div class="day-sub">Fase 2 – Aprendizado · Aprofundar conhecimento das ferramentas</div></div>
       <span class="chevron">&#8964;</span>
     </div>
     <div class="day-body">
-      <div class="goal-box">🎯 Ao fim do dia, você terá acompanhado atendimentos reais e tirado suas dúvidas com o Gabriel.</div>
-      <div class="tl-item"><div class="tl-time">09:00 – 10:00</div><div class="tl-content"><div class="tl-title">Revisão das dúvidas do documento</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Abrir salinha</a></div></div></div>
-      <div class="tl-item"><div class="tl-time">10:00 – 12:00</div><div class="tl-content"><div class="tl-title">Acompanhamento de atendimentos</div><div class="tl-resp">Responsável: Gabriel</div></div></div>
+      <div class="goal-box">🎯 Objetivo: Aprofundar o conhecimento das ferramentas e funcionalidades, realizando atividades práticas em ambiente de teste.</div>
+      <div class="tl-item"><div class="tl-time">09:00 – 13:00</div><div class="tl-content"><div class="tl-title">Colaboradores seguem na prática do site</div><div class="tl-resp">Autodirigido</div></div></div>
       <div class="tl-item lunch"><div class="tl-time">13:00 – 14:00</div><div class="tl-content"><div class="tl-title" style="color:var(--text3)">🍴 Almoço</div></div></div>
-      <div class="tl-item"><div class="tl-time">14:00 – 17:00</div><div class="tl-content"><div class="tl-title">Prática supervisionada</div><div class="tl-resp">Responsável: Gabriel</div></div></div>
-      <div class="tl-item"><div class="tl-time">17:00 – 18:00</div><div class="tl-content"><div class="tl-title">Alinhamento e dúvidas finais</div><div class="tl-resp">Entrega: registro de dúvidas e pontos de atenção</div></div></div>
+      <div class="tl-item"><div class="tl-time">15:00 – 15:30</div><div class="tl-content"><div class="tl-title">Acompanhamento – dúvidas + apoio</div><div class="tl-resp">Responsável: Gabriel + Esther</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">16:30 – 17:00</div><div class="tl-content"><div class="tl-title">Treinamento do módulo de preferências do Painel</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">18:00</div><div class="tl-content"><div class="tl-title" style="color:var(--text3)">Encerramento</div></div></div>
     </div>
   </div>
+
   <div class="day-card" id="day4">
     <div class="day-header" onclick="toggleCard('day4')">
-      <div class="day-pill">DIA 4</div>
-      <div class="day-meta"><div class="day-title">Voo solo com suporte</div><div class="day-sub">Atendimentos independentes + avaliação final</div></div>
+      <div class="day-num">4</div>
+      <div class="day-meta"><div class="day-title-row"><span class="day-title">Prática com o Gabriel 🎯</span><span class="day-date">13/07</span></div><div class="day-sub">Fase 3 – Prática Assistida · Simulações e cenários de atendimento</div></div>
       <span class="chevron">&#8964;</span>
     </div>
     <div class="day-body">
-      <div class="goal-box">🎯 Ao fim do onboarding, você estará apto(a) a realizar atendimentos de forma independente.</div>
-      <div class="tl-item"><div class="tl-time">09:00 – 12:00</div><div class="tl-content"><div class="tl-title">Prática supervisionada</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Abrir salinha</a></div></div></div>
-      <div class="tl-item lunch"><div class="tl-time">12:00 – 13:00</div><div class="tl-content"><div class="tl-title" style="color:var(--text3)">🍴 Almoço</div></div></div>
-      <div class="tl-item"><div class="tl-time">13:00 – 17:00</div><div class="tl-content"><div class="tl-title">Atendimentos independentes com suporte</div><div class="tl-resp">Responsável: Gabriel</div></div></div>
-      <div class="tl-item"><div class="tl-time">17:00 – 18:00</div><div class="tl-content"><div class="tl-title">Feedback final com o Gabriel</div><div class="tl-resp">Entrega: avaliação de reação preenchida</div></div></div>
-      <div class="feedback-day">
-        <div class="feedback-day-title">🌟 Avaliação de Reação do Onboarding</div>
-        <div class="feedback-day-sub">Você chegou ao fim! Antes de encerrar, conte como foi sua experiência no onboarding.</div>
-        <div class="fb-nome-aviso" id="fb-nome-aviso">⚠️ Informe seu nome na aba "Na Prática" antes de enviar.</div>
-        <div class="fb-question"><div class="fb-q-label">1. Como você classifica o onboarding em um contexto geral?</div>
-          <div class="fb-options">
-            <label class="fb-option"><input type="radio" name="fb1" value="Ótimo"> ⭐ Ótimo</label>
-            <label class="fb-option"><input type="radio" name="fb1" value="Bom"> 👍 Bom</label>
-            <label class="fb-option"><input type="radio" name="fb1" value="Bom, mas pode melhorar"> 🔧 Bom, mas pode melhorar</label>
-            <label class="fb-option"><input type="radio" name="fb1" value="Ruim"> 👎 Ruim</label>
+      <div class="goal-box">🎯 Objetivo: Aplicar os conhecimentos adquiridos em simulações de atendimento, desenvolvendo raciocínio para diagnóstico e resolução de demandas.</div>
+      <div class="tl-item"><div class="tl-time">09:00 – 11:00</div><div class="tl-content"><div class="tl-title">Feedback de retorno</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">11:00 – 13:00</div><div class="tl-content"><div class="tl-title">Treinamento HubSpot</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
+      <div class="tl-item lunch"><div class="tl-time">13:00 – 14:00</div><div class="tl-content"><div class="tl-title" style="color:var(--text3)">🍴 Almoço</div></div></div>
+      <div class="tl-item"><div class="tl-time">14:00 – 18:00</div><div class="tl-content"><div class="tl-title">Prática com o Gabriel – visualizando os atendimentos em tempo real</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">18:00</div><div class="tl-content"><div class="tl-title" style="color:var(--text3)">Encerramento</div></div></div>
+    </div>
+  </div>
+
+  <div class="day-card" id="day5">
+    <div class="day-header" onclick="toggleCard('day5')">
+      <div class="day-num">5</div>
+      <div class="day-meta"><div class="day-title-row"><span class="day-title">Prática do Colaborador com auxílio do Gabriel 🙌</span><span class="day-date">14/07</span></div><div class="day-sub">Fase 4 – Atendimento Assistido · Iniciar atendimentos com acompanhamento</div></div>
+      <span class="chevron">&#8964;</span>
+    </div>
+    <div class="day-body">
+      <div class="goal-box">🎯 Objetivo: Iniciar atendimentos assistidos, colocando em prática os processos de suporte com acompanhamento do time.</div>
+      <div class="tl-item"><div class="tl-time">09:00 – 18:00</div><div class="tl-content"><div class="tl-title">Atendimentos do colaborador com o auxílio do Gabriel</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
+      <div class="tl-item"><div class="tl-time">Entrega</div><div class="tl-content"><div class="tl-title" style="color:var(--gd);">📋 Avaliação de reação do onboarding preenchida</div></div></div>
+    </div>
+  </div>
+
+  <div class="day-card" id="day6">
+    <div class="day-header" onclick="toggleCard('day6')">
+      <div class="day-num">6</div>
+      <div class="day-meta"><div class="day-title-row"><span class="day-title">Prática do Colaborador com auxílio do Gabriel 🚀</span><span class="day-date">15/07</span></div><div class="day-sub">Fase 4 – Atendimento Assistido · Maior autonomia</div></div>
+      <span class="chevron">&#8964;</span>
+    </div>
+    <div class="day-body">
+      <div class="goal-box">🎯 Objetivo: Realizar atendimentos com maior autonomia, reforçando boas práticas, comunicação e registro das informações.</div>
+      <div class="tl-item"><div class="tl-time">09:00 – 18:00</div><div class="tl-content"><div class="tl-title">Atendimentos do colaborador com o auxílio do Gabriel</div><div class="tl-resp">Responsável: Gabriel</div><div class="tl-link"><a href="#">📹 Inserir link da salinha do meet</a></div></div></div>
+    </div>
+  </div>
+
+  <div class="day-card" id="day7">
+    <div class="day-header" onclick="toggleCard('day7')">
+      <div class="day-num">7</div>
+      <div class="day-meta"><div class="day-title-row"><span class="day-title">Validação e Encerramento 🏆</span><span class="day-date">16/07</span></div><div class="day-sub">Fase 5 – Validação e Autonomia · Consolidar aprendizados</div></div>
+      <span class="chevron">&#8964;</span>
+    </div>
+    <div class="day-body">
+      <div class="goal-box">🎯 Objetivo: Consolidar os aprendizados, validar conhecimentos e preparar o colaborador para atuar com autonomia no suporte.</div>
+      <div class="tl-item"><div class="tl-time">09:00 – 18:00</div><div class="tl-content"><div class="tl-title">Revisão dos principais aprendizados · Feedback do tutor · Feedback do colaborador</div><div class="tl-resp">Responsável: Gabriel + Esther</div></div></div>
+      <div class="tl-item">
+        <div class="tl-time">Avaliação final</div>
+        <div class="tl-content">
+          <div class="feedback-day" style="padding:0;">
+            <div class="feedback-day-title" style="margin-bottom:6px;">🌟 Avaliação de Reação do Onboarding</div>
+            <div class="feedback-day-sub">Você chegou ao fim! Antes de encerrar, conte como foi sua experiência.</div>
+            <div class="fb-nome-aviso" id="fb-nome-aviso">⚠️ Informe seu nome na aba "Na Prática" antes de enviar.</div>
+            <div class="fb-question"><div class="fb-q-label">1. Como você classifica o onboarding em um contexto geral?</div>
+              <div class="fb-options">
+                <label class="fb-option"><input type="radio" name="fb1" value="Ótimo"> ⭐ Ótimo</label>
+                <label class="fb-option"><input type="radio" name="fb1" value="Bom"> 👍 Bom</label>
+                <label class="fb-option"><input type="radio" name="fb1" value="Bom, mas pode melhorar"> 🔧 Bom, mas pode melhorar</label>
+                <label class="fb-option"><input type="radio" name="fb1" value="Ruim"> 👎 Ruim</label>
+              </div>
+            </div>
+            <div class="fb-question"><div class="fb-q-label">2. O cronograma foi claro e bem organizado?</div>
+              <div class="fb-options">
+                <label class="fb-option"><input type="radio" name="fb2" value="Sim, muito claro"> ✅ Sim, muito claro</label>
+                <label class="fb-option"><input type="radio" name="fb2" value="Parcialmente"> 🔶 Parcialmente</label>
+                <label class="fb-option"><input type="radio" name="fb2" value="Não, ficou confuso"> ❌ Não, ficou confuso</label>
+              </div>
+            </div>
+            <div class="fb-question"><div class="fb-q-label">3. O suporte da equipe durante o onboarding foi suficiente?</div>
+              <div class="fb-options">
+                <label class="fb-option"><input type="radio" name="fb3" value="Sim, me senti muito apoiado(a)"> ✅ Sim, me senti muito apoiado(a)</label>
+                <label class="fb-option"><input type="radio" name="fb3" value="Parcialmente"> 🔶 Parcialmente</label>
+                <label class="fb-option"><input type="radio" name="fb3" value="Não, precisei de mais suporte"> ❌ Não, precisei de mais suporte</label>
+              </div>
+            </div>
+            <div class="fb-question"><div class="fb-q-label">4. Você se sente preparado(a) para iniciar os atendimentos?</div>
+              <div class="fb-options">
+                <label class="fb-option"><input type="radio" name="fb4" value="Sim, totalmente preparado(a)"> ✅ Sim, totalmente preparado(a)</label>
+                <label class="fb-option"><input type="radio" name="fb4" value="Parcialmente preparado(a)"> 🔶 Parcialmente preparado(a)</label>
+                <label class="fb-option"><input type="radio" name="fb4" value="Ainda tenho dúvidas"> ❓ Ainda tenho dúvidas</label>
+              </div>
+            </div>
+            <div class="fb-question"><div class="fb-q-label">5. O que você mudaria ou melhoraria no processo de onboarding?</div>
+              <textarea class="fb-textarea" id="fb-aberta" placeholder="Escreva aqui sua sugestão..."></textarea>
+            </div>
+            <div class="fb-question"><div class="fb-q-label">6. Deixe um comentário geral (opcional)</div>
+              <textarea class="fb-textarea" id="fb-comentario" placeholder="Comentários adicionais..."></textarea>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;margin-top:8px;">
+              <button class="send-btn" onclick="enviarFeedback()">📤 Enviar avaliação</button>
+              <span class="sent-tag" id="fb-sent-tag"></span>
+            </div>
           </div>
-        </div>
-        <div class="fb-question"><div class="fb-q-label">2. O cronograma foi claro e bem organizado?</div>
-          <div class="fb-options">
-            <label class="fb-option"><input type="radio" name="fb2" value="Sim, muito claro"> ✅ Sim, muito claro</label>
-            <label class="fb-option"><input type="radio" name="fb2" value="Parcialmente"> 🔶 Parcialmente</label>
-            <label class="fb-option"><input type="radio" name="fb2" value="Não, ficou confuso"> ❌ Não, ficou confuso</label>
-          </div>
-        </div>
-        <div class="fb-question"><div class="fb-q-label">3. O suporte da equipe durante o onboarding foi suficiente?</div>
-          <div class="fb-options">
-            <label class="fb-option"><input type="radio" name="fb3" value="Sim, me senti muito apoiado(a)"> ✅ Sim, me senti muito apoiado(a)</label>
-            <label class="fb-option"><input type="radio" name="fb3" value="Parcialmente"> 🔶 Parcialmente</label>
-            <label class="fb-option"><input type="radio" name="fb3" value="Não, precisei de mais suporte"> ❌ Não, precisei de mais suporte</label>
-          </div>
-        </div>
-        <div class="fb-question"><div class="fb-q-label">4. Você se sente preparado(a) para iniciar os atendimentos?</div>
-          <div class="fb-options">
-            <label class="fb-option"><input type="radio" name="fb4" value="Sim, totalmente preparado(a)"> ✅ Sim, totalmente preparado(a)</label>
-            <label class="fb-option"><input type="radio" name="fb4" value="Parcialmente preparado(a)"> 🔶 Parcialmente preparado(a)</label>
-            <label class="fb-option"><input type="radio" name="fb4" value="Ainda tenho dúvidas"> ❓ Ainda tenho dúvidas</label>
-          </div>
-        </div>
-        <div class="fb-question"><div class="fb-q-label">5. O que você mudaria ou melhoraria no processo de onboarding?</div>
-          <textarea class="fb-textarea" id="fb-aberta" placeholder="Escreva aqui sua sugestão..."></textarea>
-        </div>
-        <div class="fb-question"><div class="fb-q-label">6. Deixe um comentário geral (opcional)</div>
-          <textarea class="fb-textarea" id="fb-comentario" placeholder="Comentários adicionais..."></textarea>
-        </div>
-        <div style="display:flex;align-items:center;gap:12px;margin-top:8px;">
-          <button class="send-btn" onclick="enviarFeedback()">📤 Enviar avaliação</button>
-          <span class="sent-tag" id="fb-sent-tag"></span>
         </div>
       </div>
     </div>
@@ -517,30 +571,42 @@ function toggleOrg(id){
 <!-- NA PRÁTICA -->
 <div id="napratica" class="panel">
   <div class="section-label">módulos práticos</div>
-  <div class="nome-box">
-    <div class="nome-box-title">👤 Antes de começar, informe seu nome</div>
-    <p>Seu nome será registrado junto com suas respostas para que a gestão possa acompanhar seu progresso.</p>
-    <div class="nome-input-row">
-      <input type="text" class="nome-input" id="nome-input" placeholder="Digite seu nome completo...">
-      <button class="nome-save-btn" onclick="salvarNome()">Confirmar</button>
+
+  <!-- STEPPER IDENTIFICAÇÃO -->
+  <div class="nome-box" id="step-identificacao">
+    <div class="nome-box-title">👤 Antes de começar, informe seus dados</div>
+    <p>Seu nome e e-mail serão registrados junto com suas respostas para que a gestão possa acompanhar seu progresso.</p>
+    <div id="form-identificacao">
+      <div class="nome-input-row" style="flex-direction:column;gap:10px;">
+        <input type="text" class="nome-input" id="nome-input" placeholder="Digite seu nome completo...">
+        <input type="email" class="nome-input" id="email-input" placeholder="Digite seu e-mail corporativo (@inchurch.com.br)...">
+        <button class="nome-save-btn" style="align-self:flex-start;" onclick="salvarIdentificacao()">Confirmar e começar ➜</button>
+      </div>
     </div>
     <div class="nome-display" id="nome-display">
-      <span>Respondendo como:</span>
-      <span class="nome-badge" id="nome-badge"></span>
+      <div>
+        <span>Respondendo como:</span>
+        <span class="nome-badge" id="nome-badge"></span>
+        <span class="nome-badge" id="email-badge" style="background:var(--bg3);color:var(--text2);margin-left:6px;font-size:12px;"></span>
+      </div>
       <button class="nome-edit-btn" onclick="editarNome()">Alterar</button>
     </div>
   </div>
-  <div class="admin-box">
-    <div class="admin-box-title">🖥️ Acesso ao Admin inChurch</div>
-    <p class="admin-box-sub">Para realizar os testes práticos dos módulos abaixo, você usará o painel administrativo da inChurch. Siga as instruções:</p>
-    <div class="admin-steps">
-      <div class="admin-step"><div class="admin-step-num">1</div><div class="admin-step-text">Acesse: <a href="https://admin.inchurch.com.br/" target="_blank">admin.inchurch.com.br</a></div></div>
-      <div class="admin-step"><div class="admin-step-num">2</div><div class="admin-step-text">Usuário: <strong>suporte@inchurch.com.br</strong></div></div>
-      <div class="admin-step"><div class="admin-step-num">3</div><div class="admin-step-text">Senha: solicite ao <strong>Gabriel</strong> ou <strong>Esther</strong> antes de começar</div></div>
-      <div class="admin-step"><div class="admin-step-num">4</div><div class="admin-step-text">Clique em <strong>Entrar</strong> — você verá a tela do Admin, o painel que as igrejas têm acesso e onde realizará os testes</div></div>
+  <!-- STEPPER MÓDULOS - sempre liberado -->
+  <div id="stepper-modulos" style="display:block;">
+    <div class="admin-box">
+      <div class="admin-box-title">🖥️ Acesso ao Admin inChurch</div>
+      <p class="admin-box-sub">Para realizar os testes práticos dos módulos abaixo, você usará o painel administrativo da inChurch. Siga as instruções:</p>
+      <div class="admin-steps">
+        <div class="admin-step"><div class="admin-step-num">1</div><div class="admin-step-text">Acesse: <a href="https://admin.inchurch.com.br/" target="_blank">admin.inchurch.com.br</a></div></div>
+        <div class="admin-step"><div class="admin-step-num">2</div><div class="admin-step-text">Usuário: <strong>suporte@inchurch.com.br</strong></div></div>
+        <div class="admin-step"><div class="admin-step-num">3</div><div class="admin-step-text">Senha: solicite ao <strong>Gabriel</strong> ou <strong>Esther</strong> antes de começar</div></div>
+        <div class="admin-step"><div class="admin-step-num">4</div><div class="admin-step-text">Clique em <strong>Entrar</strong> — você verá a tela do Admin, o painel que as igrejas têm acesso e onde realizará os testes</div></div>
+      </div>
     </div>
+    <div id="modules-container"></div>
   </div>
-  <div id="modules-container"></div>
+
 </div>
 
 <!-- INFORMAÇÕES ÚTEIS -->
@@ -569,19 +635,17 @@ function toggleOrg(id){
 const SCRIPT_URL='https://script.google.com/a/macros/inchurch.com.br/s/AKfycbzsxcuY42kqgrdMSXh0mHiZKE9ositucTqMR1eryNfJ0NREe8M17pdfw6jLjkM5Oi8rmg/exec';
 
 const LINKS_DATA=[
-  {id:'manual',icon:'📖',name:'Manual de Apoio',desc:'Orientações e passo a passo das principais funcionalidades.'},
-  {id:'hubspot',icon:'🎫',name:'HubSpot',desc:'Gestão e acompanhamento de tickets de atendimento.'},
-  {id:'jira',icon:'📋',name:'Jira',desc:'Gestão interna de demandas e informações dos apps.'},
-  {id:'superlogica',icon:'💰',name:'Superlógica',desc:'Consultas financeiras, boletos e informações da igreja.'},
-  {id:'admin',icon:'⚙️',name:'Admin inChurch',desc:'Plataforma administrativa principal com login admin.'},
-  {id:'backoffice',icon:'🗄️',name:'BackOffice',desc:'Consulta de usuários, e-mail, perfil de acesso e dados.'},
-  {id:'napratica',icon:'🎬',name:'Na Prática',desc:'Portal de treinamentos com vídeos e conteúdos do painel.'},
-  {id:'atos6',icon:'⛪',name:'Atos 6',desc:'Plataforma parceira incorporada pela inChurch.'},
-  {id:'baseconhec',icon:'📚',name:'Base de Conhecimento',desc:'Artigos e tutoriais para compartilhar com clientes.'},
-  {id:'precif',icon:'💲',name:'Precificação',desc:'Planilha com valores e características dos planos.'},
-  {id:'formfin',icon:'📝',name:'Formulário Financeiro',desc:'Registro de solicitações internas financeiras.'},
-  {id:'artigos',icon:'✏️',name:'Artigos | Atualização & Criação',desc:'Formulário para registrar atualizações internas de FAQ e base de conhecimento.'},
-  {id:'statusios',icon:'📱',name:'Status App iOS',desc:'Acompanhamento do status do aplicativo iOS.'},
+  {id:'hubspot',icon:'🎫',name:'HubSpot',desc:'Gestão e acompanhamento de tickets de atendimento.',url:'https://app.hubspot.com/help-desk/47354717/view/370559028/ticket/45729770412/thread/10868138813#whatsapp'},
+  {id:'jira',icon:'📋',name:'Jira',desc:'Gestão interna de demandas e informações dos apps.',url:'https://inradar.atlassian.net/jira/dashboards/'},
+  {id:'superlogica',icon:'💰',name:'Superlógica',desc:'Consultas financeiras, boletos e informações da igreja.',url:'https://inchurch.superlogica.net/clients/financeiro/sacados/id/5801?status=2'},
+  {id:'admin',icon:'⚙️',name:'Admin inChurch',desc:'Plataforma administrativa principal com login admin.',url:'https://admin.inchurch.com.br/'},
+  {id:'backoffice',icon:'🗄️',name:'BackOffice',desc:'Consulta de usuários, e-mail, perfil de acesso e dados.',url:'https://central.inchurch.com.br/dashboard/clientes/usuarios?email=igrejaiamaccb%40gmail.com'},
+  {id:'napratica',icon:'🎬',name:'Na Prática',desc:'Portal de treinamentos com vídeos e conteúdos do painel.',url:'https://napratica.inchurch.com.br/conteudos'},
+  {id:'baseconhec',icon:'📚',name:'Base de Conhecimento',desc:'Artigos e tutoriais para compartilhar com clientes.',url:'https://portal.inchurch.com.br/pt-br'},
+  {id:'precif',icon:'💲',name:'Precificação',desc:'Planilha com valores e características dos planos.',url:'https://docs.google.com/spreadsheets/d/1Wdib3QdfSUl9da1OyAZL5vkDqbCB-qeokplDag2nj00/edit?pli=1&gid=1838759795#gid=1838759795'},
+  {id:'formfin',icon:'📝',name:'Formulário Financeiro',desc:'Registro de solicitações internas financeiras.',url:'https://n8n.tools.inchurch.com.br/form/alteracoes_CS'},
+  {id:'artigos',icon:'✏️',name:'Artigos | Atualização & Criação',desc:'Formulário para registrar atualizações internas de FAQ e base de conhecimento.',url:'https://docs.google.com/forms/d/e/1FAIpQLSf0lZlytHTGCfKnaIHcGeQPVV_XnAb1SwXwvs9M_Vuod_VynA/viewform'},
+  {id:'statusios',icon:'📱',name:'Status App iOS',desc:'Acompanhamento do status do aplicativo iOS.',url:'https://docs.google.com/spreadsheets/d/1Ln0Yg93ZXMMVAKCYF-wcAzjT2OzEFgKD4Axut0-ucT4/edit?gid=1215148722#gid=1215148722'},
 ];
 
 const GLOSSARIO=[
@@ -624,6 +688,7 @@ const MODULES_DOC=[
       desc:'Nesta etapa, você irá criar um novo membro diretamente pelo painel administrativo.',
       howTitle:'Como realizar:',
       steps:['Acesse o módulo <strong>Pessoas</strong>','Clique na aba <strong>Membros</strong>','Clique em <strong>+ Novo</strong>','Preencha os dados solicitados'],
+      required:true,
       answerLabel:'✏️ Insira aqui o membro criado:',
       answerId:'pe_painel'
     },
@@ -632,6 +697,7 @@ const MODULES_DOC=[
       desc:'Agora, você irá realizar a criação de um membro através do formulário utilizado pelos usuários da igreja.',
       howTitle:'Como realizar:',
       steps:['Acesse <strong>Pessoas</strong>','Clique na aba <strong>Geral</strong>','Acesse <strong>Importação de membros</strong>','Preencha o formulário com os dados solicitados'],
+      required:true,
       answerLabel:'✏️ Insira aqui o membro criado:',
       answerId:'pe_formulario'
     },
@@ -647,6 +713,7 @@ const MODULES_DOC=[
       desc:'Agora você irá criar um visitante ou frequentador dentro da plataforma.',
       howTitle:'Como realizar:',
       steps:['Acesse o módulo <strong>Pessoas</strong>','Clique na aba <strong>Visitantes</strong>','Clique em <strong>+ Novo</strong>','Preencha os dados solicitados'],
+      required:true,
       answerLabel:'✏️ Insira aqui o visitante/frequentador criado:',
       answerId:'pe_visitante'
     },
@@ -656,6 +723,7 @@ const MODULES_DOC=[
       howTitle:'Como realizar:',
       steps:['Acesse <strong>Pessoas</strong>','Clique em <strong>Geral</strong>','Acesse <strong>Importação de membros</strong>','Preencha o formulário'],
       extra:'Após finalizar o preenchimento, você poderá verificar que o cadastro será refletido na aba <strong>Novo Convertido</strong> do painel.',
+      required:true,
       answerLabel:'✏️ Insira aqui o novo convertido criado:',
       answerId:'pe_convertido'
     },
@@ -674,6 +742,7 @@ const MODULES_DOC=[
       desc:'Nesta etapa, você irá criar uma nova conta controle. A conta controle é utilizada pelas igrejas para organização interna das movimentações financeiras, sem estar necessariamente vinculada a um meio de pagamento.',
       howTitle:'Como realizar:',
       steps:['Acesse <strong>Financeiro</strong>','Clique em <strong>Configurações</strong>','Acesse <strong>Contas</strong>','Clique em <strong>+ Novo</strong>','Preencha os dados solicitados'],
+      required:true,
       answerLabel:'✏️ Insira aqui o nome da conta criada:',
       answerId:'fi_conta'
     },
@@ -682,6 +751,7 @@ const MODULES_DOC=[
       desc:'Agora, você irá criar uma nova categoria financeira. As categorias ajudam a organizar e classificar as movimentações, facilitando a visualização dos registros e relatórios financeiros.',
       howTitle:'Como realizar:',
       steps:['Acesse <strong>Financeiro</strong>','Clique em <strong>Configurações</strong>','Acesse <strong>Categorias</strong>','Clique em <strong>+ Novo</strong>','Preencha os dados solicitados'],
+      required:true,
       answerLabel:'✏️ Insira aqui o nome da categoria criada:',
       answerId:'fi_categoria'
     },
@@ -690,6 +760,7 @@ const MODULES_DOC=[
       desc:'Nesta etapa, você irá cadastrar uma nova entrada financeira.',
       howTitle:'Como realizar:',
       steps:['Acesse <strong>Financeiro</strong>','Clique em <strong>Lançamentos</strong>','Acesse <strong>Entradas</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações solicitadas'],
+      required:true,
       answerLabel:'✏️ Insira aqui o nome da entrada criada:',
       answerId:'fi_entrada'
     },
@@ -698,13 +769,14 @@ const MODULES_DOC=[
       desc:'Agora, você irá cadastrar uma nova saída financeira.',
       howTitle:'Como realizar:',
       steps:['Acesse <strong>Financeiro</strong>','Clique em <strong>Lançamentos</strong>','Acesse <strong>Saídas</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações solicitadas'],
+      required:true,
       answerLabel:'✏️ Insira aqui o nome da saída criada:',
       answerId:'fi_saida'
     },
     {
       title:'🔎 Exploração do módulo',
       desc:'As criações acima são etapas obrigatórias do onboarding. Além delas, explore as demais áreas disponíveis dentro do módulo Financeiro, como: 📊 Relatórios · 🏦 Contas · 🗂️ Categorias · 🏢 Unidades de negócio · 📌 Centros de custo · 🕒 Histórico e demais configurações disponíveis',
-      answerLabel:'✏️ Caso tenha alguma dúvida durante a navegação, registre abaixo:',
+      answerLabel:'✏️ Caso encontre alguma dúvida durante a navegação, registre abaixo:',
       answerId:'fi_exploracao'
     }
    ]},
@@ -716,6 +788,7 @@ const MODULES_DOC=[
       desc:'Nesta etapa, você irá criar um novo pedido de oração.',
       howTitle:'Como realizar:',
       steps:['Acesse o módulo <strong>Cuidados</strong>','Acesse a área de <strong>Pedidos de oração</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações solicitadas'],
+      required:true,
       answerLabel:'✏️ Insira aqui o pedido de oração criado:',
       answerId:'cu_oracao'
     },
@@ -724,6 +797,7 @@ const MODULES_DOC=[
       desc:'Agora, você irá cadastrar um novo testemunho.',
       howTitle:'Como realizar:',
       steps:['Acesse o módulo <strong>Cuidados</strong>','Acesse a área de <strong>Testemunhos</strong>','Clique em <strong>+ Novo</strong>','Preencha os dados solicitados'],
+      required:true,
       answerLabel:'✏️ Insira aqui o testemunho criado:',
       answerId:'cu_testemunho'
     },
@@ -732,6 +806,7 @@ const MODULES_DOC=[
       desc:'Nesta etapa, você irá realizar um atendimento pastoral.',
       howTitle:'Como realizar:',
       steps:['Acesse o módulo <strong>Cuidados</strong>','Acesse a área de <strong>Atendimento Pastoral</strong>','Crie um novo atendimento','Preencha as informações solicitadas'],
+      required:true,
       answerLabel:'✏️ Insira aqui o atendimento pastoral criado:',
       answerId:'cu_pastoral'
     }
@@ -746,6 +821,7 @@ const MODULES_DOC=[
       steps:['Acesse o módulo <strong>Jornadas</strong>','Clique em <strong>Criar trilha</strong>','Preencha as informações solicitadas'],
       extra:'Ao criar a trilha, abrirá uma tela onde você poderá criar a etapa e, dentro dessa etapa, adicionar os passos. Nesta trilha que você criou, configure: ✅ <strong>1 etapa</strong> e pelo menos ✅ <strong>2 passos</strong> nessa etapa.',
       imgNote:'📸 Observe a tela que abre após criar a trilha — é nela que você configura as etapas e os passos.',
+      required:true,
       answerLabel:'✏️ Insira aqui a trilha criada:',
       answerId:'jo_trilha'
     },
@@ -754,67 +830,68 @@ const MODULES_DOC=[
       desc:'Agora, você irá criar uma equipe e vinculá-la à trilha criada.',
       howTitle:'Como realizar:',
       steps:['Acesse a área de <strong>Equipes</strong>','Crie uma nova equipe','Retorne para a trilha criada','Vincule a equipe à jornada'],
+      required:true,
       answerLabel:'✏️ Insira aqui a equipe criada e vinculada:',
       answerId:'jo_equipe'
     },
     {
       title:'🔎 Exploração dos módulos',
       desc:'As criações acima são etapas obrigatórias do onboarding. Além delas, explore as demais áreas disponíveis dentro dos módulos Cuidados e Jornadas.',
-      answerLabel:'✏️ Caixinha livre de dúvidas — registre aqui qualquer dúvida durante a navegação:',
+      answerLabel:'✏️ Caso encontre alguma dúvida durante a navegação, registre abaixo:',
       answerId:'jo_exploracao'
     }
    ]},
   {id:'celulas',icon:'👥',name:'Módulo – Células',
    objetivo:'O módulo Células permite organizar e acompanhar grupos da igreja, facilitando a gestão de redes, células, líderes e responsáveis pelo acompanhamento. Por meio dele é possível: 👥 Criar e organizar células · 🏠 Estruturar redes de células · 🙋 Definir líderes e responsáveis · 📊 Acompanhar informações e relatórios.',
    sections:[
-    {title:'🌐 Criação de rede',desc:'Nesta etapa, você irá criar uma nova rede.',howTitle:'Como realizar:',steps:['Acesse o módulo <strong>Células</strong>','Acesse a área de <strong>Redes</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações solicitadas','Defina o responsável pela rede'],extra:'⚠️ <strong>Atenção:</strong> Para realizar essa etapa, é necessário possuir um membro com e-mail cadastrado no contato.',answerLabel:'✏️ Insira aqui a rede criada:',answerId:'ce_rede'},
-    {title:'🏠 Criação de célula',desc:'Agora, você irá criar uma nova célula vinculada à rede criada.',howTitle:'Como realizar:',steps:['Acesse o módulo <strong>Células</strong>','Clique em <strong>Criar célula</strong>','Selecione a <strong>rede criada anteriormente</strong>','Adicione as informações da célula'],extra:'Para configurar a célula: ✅ Utilize a rede criada · ✅ Adicione um líder responsável · ✅ Utilize o responsável da rede como supervisor.<br><br>⚠️ <strong>Atenção:</strong> Para adicionar um líder, é necessário possuir outro membro com e-mail cadastrado. Caso necessário: retorne ao módulo Pessoas, crie um novo membro, cadastre o e-mail do contato e volte para a célula para vincular o líder.',answerLabel:'✏️ Insira aqui a célula criada:',answerId:'ce_celula'},
-    {title:'📊 Cadastro de relatório de reunião da célula',desc:'Após a criação da célula, você poderá cadastrar um relatório relacionado às reuniões realizadas.',howTitle:'Como realizar:',steps:['Acesse o módulo <strong>Células</strong>','Entre na <strong>célula criada</strong>','Acesse a área de <strong>Reuniões</strong>','Selecione a reunião desejada','Cadastre o <strong>relatório da reunião</strong>'],extra:'⚠️ <strong>Atenção:</strong> Caso ainda não exista uma reunião cadastrada, será necessário criar uma nova. Para criar uma reunião: dentro da célula, acesse Reuniões → Clique em <strong>Criar reunião</strong> → Preencha as informações → Salve a reunião → Após criada, realize o cadastro do relatório.',answerLabel:'✏️ Insira aqui a reunião/relatório criado:',answerId:'ce_reuniao'}
+    {title:'🌐 Criação de rede',desc:'Nesta etapa, você irá criar uma nova rede.',howTitle:'Como realizar:',steps:['Acesse o módulo <strong>Células</strong>','Acesse a área de <strong>Redes</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações solicitadas','Defina o responsável pela rede'],extra:'⚠️ <strong>Atenção:</strong> Para realizar essa etapa, é necessário possuir um membro com e-mail cadastrado no contato.',required:true,answerLabel:'✏️ Insira aqui a rede criada:',answerId:'ce_rede'},
+    {title:'🏠 Criação de célula',desc:'Agora, você irá criar uma nova célula vinculada à rede criada.',howTitle:'Como realizar:',steps:['Acesse o módulo <strong>Células</strong>','Clique em <strong>Criar célula</strong>','Selecione a <strong>rede criada anteriormente</strong>','Adicione as informações da célula'],extra:'Para configurar a célula: ✅ Utilize a rede criada · ✅ Adicione um líder responsável · ✅ Utilize o responsável da rede como supervisor.<br><br>⚠️ <strong>Atenção:</strong> Para adicionar um líder, é necessário possuir outro membro com e-mail cadastrado. Caso necessário: retorne ao módulo Pessoas, crie um novo membro, cadastre o e-mail do contato e volte para a célula para vincular o líder.',required:true,answerLabel:'✏️ Insira aqui a célula criada:',answerId:'ce_celula'},
+    {title:'📊 Cadastro de relatório de reunião da célula',desc:'Após a criação da célula, você poderá cadastrar um relatório relacionado às reuniões realizadas.',howTitle:'Como realizar:',steps:['Acesse o módulo <strong>Células</strong>','Entre na <strong>célula criada</strong>','Acesse a área de <strong>Reuniões</strong>','Selecione a reunião desejada','Cadastre o <strong>relatório da reunião</strong>'],extra:'⚠️ <strong>Atenção:</strong> Caso ainda não exista uma reunião cadastrada, será necessário criar uma nova. Para criar uma reunião: dentro da célula, acesse Reuniões → Clique em <strong>Criar reunião</strong> → Preencha as informações → Salve a reunião → Após criada, realize o cadastro do relatório.',required:true,answerLabel:'✏️ Insira aqui a reunião/relatório criado:',answerId:'ce_reuniao'}
    ]},
   {id:'eventos',icon:'🎉',name:'Módulo – Eventos',
    objetivo:'O módulo Eventos permite criar e gerenciar eventos da igreja, organizando informações como inscrições, participantes e ingressos. Por meio dele é possível: 🎉 Criar eventos · 🎟️ Configurar ingressos · 👥 Organizar participantes.',
    sections:[
-    {title:'🎟️ Criação de evento',desc:'Nesta etapa, você irá criar um novo evento.',howTitle:'Como realizar:',steps:['Acesse o módulo <strong>Eventos</strong>','Clique em <strong>+ Novo evento</strong>','Preencha as informações solicitadas','Salve o evento'],answerLabel:'✏️ Insira aqui o evento criado:',answerId:'ev_evento'},
-    {title:'🎫 Criação de ingresso (Tickets)',desc:'Após criar o evento, você irá cadastrar um ingresso.',howTitle:'Como realizar:',steps:['Acesse o evento criado','Entre na área de <strong>Tickets</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações do ingresso'],answerLabel:'✏️ Insira aqui o ingresso criado:',answerId:'ev_ingresso'},
-    {title:'🔎 Exploração dos módulos',desc:'As criações acima são etapas obrigatórias do onboarding. Além delas, explore as demais áreas disponíveis dentro dos módulos Células e Eventos.',answerLabel:'✏️ Caixinha livre de dúvidas:',answerId:'ev_exploracao'}
+    {title:'🎟️ Criação de evento',desc:'Nesta etapa, você irá criar um novo evento.',howTitle:'Como realizar:',steps:['Acesse o módulo <strong>Eventos</strong>','Clique em <strong>+ Novo evento</strong>','Preencha as informações solicitadas','Salve o evento'],required:true,answerLabel:'✏️ Insira aqui o evento criado:',answerId:'ev_evento'},
+    {title:'🎫 Criação de ingresso (Tickets)',desc:'Após criar o evento, você irá cadastrar um ingresso.',howTitle:'Como realizar:',steps:['Acesse o evento criado','Entre na área de <strong>Tickets</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações do ingresso'],required:true,answerLabel:'✏️ Insira aqui o ingresso criado:',answerId:'ev_ingresso'},
+    {title:'🔎 Exploração dos módulos',desc:'As criações acima são etapas obrigatórias do onboarding. Além delas, explore as demais áreas disponíveis dentro dos módulos Células e Eventos.',answerLabel:'✏️ Caso encontre alguma dúvida durante a navegação, registre abaixo:',answerId:'ev_exploracao'}
    ]},
   {id:'conteudo',icon:'📚',name:'Módulo – Conteúdo',
    objetivo:'O módulo Conteúdos permite criar, organizar e disponibilizar materiais para a comunidade da igreja. Por meio dele é possível: 🎤 Criar e organizar pregações · 📖 Criar séries de mensagens · 📢 Publicar conteúdos e comunicações · 📚 Disponibilizar materiais de leitura e download.',
    sections:[
-    {title:'🎤 Criação de pregação',desc:'Nesta etapa, você irá criar uma nova pregação.',howTitle:'Como realizar:',steps:['Acesse o módulo <strong>Conteúdos</strong>','Acesse a área de <strong>Pregações</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações solicitadas'],answerLabel:'✏️ Insira aqui a pregação criada:',answerId:'co_pregacao'},
-    {title:'📖 Criação de série',desc:'Agora, você irá criar uma série e vincular a pregação criada anteriormente.',howTitle:'Como realizar:',steps:['Acesse a área de <strong>Séries</strong>','Clique em <strong>+ Nova série</strong>','Crie a série','Adicione a pregação criada anteriormente'],answerLabel:'✏️ Insira aqui a série criada:',answerId:'co_serie'},
-    {title:'📢 Notificação Push',desc:'Nesta etapa, você irá criar uma nova notificação push.',howTitle:'Como realizar:',steps:['Acesse <strong>Notificações Push</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações da mensagem','Realize o envio/configuração'],answerLabel:'✏️ Insira aqui a notificação push criada:',answerId:'co_push'},
-    {title:'📰 Criação de notícia',desc:'Agora, você irá criar uma nova notícia.',howTitle:'Como realizar:',steps:['Acesse <strong>Notícias</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações solicitadas','Publique a notícia'],answerLabel:'✏️ Insira aqui a notícia criada:',answerId:'co_noticia'},
-    {title:'🖼️ Criação de banner',desc:'Nesta etapa, você irá criar um novo banner.',howTitle:'Como realizar:',steps:['Acesse <strong>Banners</strong>','Clique em <strong>+ Novo</strong>','Configure as informações e imagem do banner','Salve'],answerLabel:'✏️ Insira aqui o banner criado:',answerId:'co_banner'},
-    {title:'📖 Criação de plano de leitura',desc:'Agora, você irá criar um novo plano de leitura.',howTitle:'Como realizar:',steps:['Acesse <strong>Plano de leitura</strong>','Clique em <strong>+ Novo</strong>','Crie o plano de leitura','Adicione pelo menos uma leitura dentro do plano'],answerLabel:'✏️ Insira aqui o plano de leitura criado:',answerId:'co_plano'},
-    {title:'',desc:'',answerLabel:'✏️ Insira aqui a leitura adicionada:',answerId:'co_leitura'},
-    {title:'📥 Criação de download',desc:'Nesta etapa, você irá criar um novo download.',howTitle:'Como realizar:',steps:['Acesse <strong>Downloads</strong>','Clique em <strong>+ Novo</strong>','Adicione o arquivo e preencha as informações solicitadas'],answerLabel:'✏️ Insira aqui o download criado:',answerId:'co_download'},
-    {title:'🔎 Exploração do módulo',desc:'As criações acima são etapas obrigatórias do onboarding. Além delas, explore as demais áreas disponíveis dentro do módulo Conteúdos.',answerLabel:'✏️ Caixinha livre de dúvidas:',answerId:'co_exploracao'}
+    {title:'🎤 Criação de pregação',desc:'Nesta etapa, você irá criar uma nova pregação.',howTitle:'Como realizar:',steps:['Acesse o módulo <strong>Conteúdos</strong>','Acesse a área de <strong>Pregações</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações solicitadas'],required:true,answerLabel:'✏️ Insira aqui a pregação criada:',answerId:'co_pregacao'},
+    {title:'📖 Criação de série',desc:'Agora, você irá criar uma série e vincular a pregação criada anteriormente.',howTitle:'Como realizar:',steps:['Acesse a área de <strong>Séries</strong>','Clique em <strong>+ Nova série</strong>','Crie a série','Adicione a pregação criada anteriormente'],required:true,answerLabel:'✏️ Insira aqui a série criada:',answerId:'co_serie'},
+    {title:'📢 Notificação Push',desc:'Nesta etapa, você irá criar uma nova notificação push.',howTitle:'Como realizar:',steps:['Acesse <strong>Notificações Push</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações da mensagem','Realize o envio/configuração'],required:true,answerLabel:'✏️ Insira aqui a notificação push criada:',answerId:'co_push'},
+    {title:'📰 Criação de notícia',desc:'Agora, você irá criar uma nova notícia.',howTitle:'Como realizar:',steps:['Acesse <strong>Notícias</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações solicitadas','Publique a notícia'],required:true,answerLabel:'✏️ Insira aqui a notícia criada:',answerId:'co_noticia'},
+    {title:'🖼️ Criação de banner',desc:'Nesta etapa, você irá criar um novo banner.',howTitle:'Como realizar:',steps:['Acesse <strong>Banners</strong>','Clique em <strong>+ Novo</strong>','Configure as informações e imagem do banner','Salve'],required:true,answerLabel:'✏️ Insira aqui o banner criado:',answerId:'co_banner'},
+    {title:'📖 Criação de plano de leitura',desc:'Agora, você irá criar um novo plano de leitura.',howTitle:'Como realizar:',steps:['Acesse <strong>Plano de leitura</strong>','Clique em <strong>+ Novo</strong>','Crie o plano de leitura','Adicione pelo menos uma leitura dentro do plano'],required:true,answerLabel:'✏️ Insira aqui o plano de leitura criado:',answerId:'co_plano'},
+    {title:'',desc:'',required:true,answerLabel:'✏️ Insira aqui a leitura adicionada:',answerId:'co_leitura'},
+    {title:'📥 Criação de download',desc:'Nesta etapa, você irá criar um novo download.',howTitle:'Como realizar:',steps:['Acesse <strong>Downloads</strong>','Clique em <strong>+ Novo</strong>','Adicione o arquivo e preencha as informações solicitadas'],required:true,answerLabel:'✏️ Insira aqui o download criado:',answerId:'co_download'},
+    {title:'🔎 Exploração do módulo',desc:'As criações acima são etapas obrigatórias do onboarding. Além delas, explore as demais áreas disponíveis dentro do módulo Conteúdos.',answerLabel:'✏️ Caso encontre alguma dúvida durante a navegação, registre abaixo:',answerId:'co_exploracao'}
    ]},
   {id:'kids',icon:'🧒',name:'Módulo – Kids',
    objetivo:'O módulo Kids foi desenvolvido para auxiliar a gestão do ministério infantil da igreja, permitindo o cadastro e organização de crianças, turmas, salas e processos de check-in. Por meio dele é possível: 👧 Cadastrar crianças · 🏫 Criar turmas e salas · 🖨️ Configurar impressoras para identificação · ⚙️ Personalizar configurações do ministério infantil · 📋 Organizar o acompanhamento das crianças e responsáveis.',
    sections:[
-    {title:'🏫 Criação de turma',desc:'Nesta etapa, você irá criar uma nova turma.',howTitle:'Como realizar:',steps:['Acesse o módulo <strong>Kids</strong>','Acesse a área de <strong>Turmas</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações solicitadas'],answerLabel:'✏️ Insira aqui a turma criada:',answerId:'ki_turma'},
-    {title:'🚪 Criação de sala',desc:'Agora, você irá criar uma sala vinculada à turma criada anteriormente. As salas representam os espaços onde as turmas serão organizadas durante as atividades.',howTitle:'Como realizar:',steps:['Acesse a área de <strong>Salas</strong>','Clique em <strong>+ Nova</strong>','Vincule a sala à turma criada anteriormente','Salve as configurações'],answerLabel:'✏️ Insira aqui a sala criada:',answerId:'ki_sala'},
-    {title:'👧 Criação de criança',desc:'Nesta etapa, você irá cadastrar uma criança no sistema.',howTitle:'Como realizar:',steps:['Acesse a área de <strong>Crianças</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações solicitadas','Salve o cadastro'],answerLabel:'✏️ Insira aqui a criança criada:',answerId:'ki_crianca'},
-    {title:'🖨️ Criação de impressora',desc:'Agora, você irá realizar a configuração de uma impressora no módulo Kids. A impressora é utilizada para emissão das etiquetas de identificação e controle do ministério infantil.',howTitle:'Como realizar:',steps:['Acesse o módulo <strong>Kids</strong>','Acesse a área de <strong>Impressoras</strong>','Clique em <strong>+ Nova Impressora</strong>','Realize o cadastro'],extra:'Após a criação, será exibido um código de vinculação.',answerLabel:'✏️ Insira aqui o nome da impressora criada:',answerId:'ki_impressora'},
-    {title:'💻 Instalação e vinculação da impressora',desc:'Após criar a impressora, será necessário instalar o aplicativo responsável pela comunicação com o painel.',howTitle:'Como realizar:',steps:['Clique no botão <strong>"Instalador aqui"</strong>','Baixe o instalador Kids','Realize a instalação no computador','Abra o aplicativo instalado','Insira o código gerado no cadastro da impressora','Finalize a vinculação'],extra:'✅ Ao concluir, a impressora estará conectada ao painel e pronta para utilização.',answerLabel:'✏️ Confirme se a impressora foi vinculada com sucesso (Sim / Não) e registre observações:',answerId:'ki_vinculacao'},
-    {title:'🔎 Exploração do módulo',desc:'As etapas acima são obrigatórias para o onboarding. Além delas, navegue pelas demais áreas do módulo Kids para conhecer os recursos disponíveis.',answerLabel:'✏️ Caixinha livre de dúvidas:',answerId:'ki_exploracao'}
+    {title:'🏫 Criação de turma',desc:'Nesta etapa, você irá criar uma nova turma.',howTitle:'Como realizar:',steps:['Acesse o módulo <strong>Kids</strong>','Acesse a área de <strong>Turmas</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações solicitadas'],required:true,answerLabel:'✏️ Insira aqui a turma criada:',answerId:'ki_turma'},
+    {title:'🚪 Criação de sala',desc:'Agora, você irá criar uma sala vinculada à turma criada anteriormente. As salas representam os espaços onde as turmas serão organizadas durante as atividades.',howTitle:'Como realizar:',steps:['Acesse a área de <strong>Salas</strong>','Clique em <strong>+ Nova</strong>','Vincule a sala à turma criada anteriormente','Salve as configurações'],required:true,answerLabel:'✏️ Insira aqui a sala criada:',answerId:'ki_sala'},
+    {title:'👧 Criação de criança',desc:'Nesta etapa, você irá cadastrar uma criança no sistema.',howTitle:'Como realizar:',steps:['Acesse a área de <strong>Crianças</strong>','Clique em <strong>+ Novo</strong>','Preencha as informações solicitadas','Salve o cadastro'],required:true,answerLabel:'✏️ Insira aqui a criança criada:',answerId:'ki_crianca'},
+    {title:'🖨️ Criação de impressora',desc:'Agora, você irá realizar a configuração de uma impressora no módulo Kids. A impressora é utilizada para emissão das etiquetas de identificação e controle do ministério infantil.',howTitle:'Como realizar:',steps:['Acesse o módulo <strong>Kids</strong>','Acesse a área de <strong>Impressoras</strong>','Clique em <strong>+ Nova Impressora</strong>','Realize o cadastro'],extra:'Após a criação, será exibido um código de vinculação.',required:true,answerLabel:'✏️ Insira aqui o nome da impressora criada:',answerId:'ki_impressora'},
+    {title:'💻 Instalação e vinculação da impressora',desc:'Após criar a impressora, será necessário instalar o aplicativo responsável pela comunicação com o painel.',howTitle:'Como realizar:',steps:['Clique no botão <strong>"Instalador aqui"</strong>','Baixe o instalador Kids','Realize a instalação no computador','Abra o aplicativo instalado','Insira o código gerado no cadastro da impressora','Finalize a vinculação'],extra:'✅ Ao concluir, a impressora estará conectada ao painel e pronta para utilização.',required:true,answerLabel:'✏️ Confirme se a impressora foi vinculada com sucesso (Sim / Não) e registre observações:',answerId:'ki_vinculacao'},
+    {title:'🔎 Exploração do módulo',desc:'As etapas acima são obrigatórias para o onboarding. Além delas, navegue pelas demais áreas do módulo Kids para conhecer os recursos disponíveis.',answerLabel:'✏️ Caso encontre alguma dúvida durante a navegação, registre abaixo:',answerId:'ki_exploracao'}
    ]},
   {id:'painelv1',icon:'🖥️',name:'Painel V1',
    objetivo:'O Painel V1 permite realizar configurações administrativas da plataforma, como gerenciamento de usuários, grupos e conteúdos personalizados. Por meio dele é possível: 👤 Gerenciar usuários do painel · 🔐 Configurar permissões de acesso · 👥 Organizar usuários em grupos · 📱 Criar páginas e conteúdos para App e Web.',
    sections:[
-    {title:'👤 Criação de usuário',desc:'Nesta etapa, você irá criar um novo usuário para acessar o painel. O usuário criado deverá ser configurado como membro de equipe, permitindo posteriormente definir seus acessos dentro da plataforma.',howTitle:'Como realizar:',steps:['Acesse o <strong>Painel V1</strong>','Entre na área de <strong>Usuários</strong>','Clique em <strong>+ Novo usuário</strong>','Preencha os campos obrigatórios','No campo Tipo de Usuário, selecione <strong>Membro de equipe</strong>','Salve o cadastro'],extra:'Após salvar, desça a página até a área de <strong>Permissões</strong>. Nessa área, é possível configurar os acessos aos módulos do painel, definindo: quais módulos o usuário poderá acessar e qual o nível de permissão em cada módulo.',answerLabel:'✏️ Insira aqui o usuário criado:',answerId:'v1_usuario'},
-    {title:'',desc:'',answerLabel:'✏️ Insira aqui as permissões configuradas:',answerId:'v1_permissoes'},
-    {title:'👥 Criação de grupo',desc:'Nesta etapa, você irá criar um novo grupo de usuários.',howTitle:'Como realizar:',steps:['Acesse a área de <strong>Grupos</strong>','Clique em <strong>+ Novo grupo</strong>','Preencha as informações solicitadas','Salve o grupo'],extra:'Após criar o grupo, será necessário adicionar um usuário. Para adicionar usuário ao grupo: acesse o grupo criado → Clique em <strong>Adicionar usuário</strong> → Selecione o usuário desejado → Salve as alterações.',answerLabel:'✏️ Insira aqui o nome do grupo criado:',answerId:'v1_grupo'},
-    {title:'',desc:'',answerLabel:'✏️ Insira aqui o nome do usuário vinculado ao grupo:',answerId:'v1_usuario_grupo'},
-    {title:'📝 Criação de página multiuso',desc:'As Páginas Multiuso permitem criar páginas personalizadas que podem ser exibidas na plataforma, tanto na versão do aplicativo quanto na versão web.',howTitle:'Como realizar:',steps:['Acesse <strong>Mídia</strong>','Entre em <strong>Páginas Multiuso</strong>','Clique em <strong>+ Nova página</strong>','Preencha as informações solicitadas'],extra:'Durante a criação, será necessário configurar: 📱 <strong>Versão App</strong> — conteúdo exibido no aplicativo · 💻 <strong>Versão Web</strong> — conteúdo exibido na versão web. Preencha ambas as versões com seus respectivos conteúdos.',answerLabel:'✏️ Insira aqui a página multiuso criada:',answerId:'v1_pagina'},
-    {title:'🔎 Exploração do painel',desc:'As criações acima são etapas obrigatórias do onboarding. Além delas, explore as demais áreas disponíveis no Painel V1, verificando configurações, permissões e recursos disponíveis.',answerLabel:'✏️ Caixinha livre de dúvidas:',answerId:'v1_exploracao'}
+    {title:'👤 Criação de usuário',desc:'Nesta etapa, você irá criar um novo usuário para acessar o painel. O usuário criado deverá ser configurado como membro de equipe, permitindo posteriormente definir seus acessos dentro da plataforma.',howTitle:'Como realizar:',steps:['Acesse o <strong>Painel V1</strong>','Entre na área de <strong>Usuários</strong>','Clique em <strong>+ Novo usuário</strong>','Preencha os campos obrigatórios','No campo Tipo de Usuário, selecione <strong>Membro de equipe</strong>','Salve o cadastro'],extra:'Após salvar, desça a página até a área de <strong>Permissões</strong>. Nessa área, é possível configurar os acessos aos módulos do painel, definindo: quais módulos o usuário poderá acessar e qual o nível de permissão em cada módulo.',required:true,answerLabel:'✏️ Insira aqui o usuário criado:',answerId:'v1_usuario'},
+    {title:'',desc:'',required:true,answerLabel:'✏️ Insira aqui as permissões configuradas:',answerId:'v1_permissoes'},
+    {title:'👥 Criação de grupo',desc:'Nesta etapa, você irá criar um novo grupo de usuários.',howTitle:'Como realizar:',steps:['Acesse a área de <strong>Grupos</strong>','Clique em <strong>+ Novo grupo</strong>','Preencha as informações solicitadas','Salve o grupo'],extra:'Após criar o grupo, será necessário adicionar um usuário. Para adicionar usuário ao grupo: acesse o grupo criado → Clique em <strong>Adicionar usuário</strong> → Selecione o usuário desejado → Salve as alterações.',required:true,answerLabel:'✏️ Insira aqui o nome do grupo criado:',answerId:'v1_grupo'},
+    {title:'',desc:'',required:true,answerLabel:'✏️ Insira aqui o nome do usuário vinculado ao grupo:',answerId:'v1_usuario_grupo'},
+    {title:'📝 Criação de página multiuso',desc:'As Páginas Multiuso permitem criar páginas personalizadas que podem ser exibidas na plataforma, tanto na versão do aplicativo quanto na versão web.',howTitle:'Como realizar:',steps:['Acesse <strong>Mídia</strong>','Entre em <strong>Páginas Multiuso</strong>','Clique em <strong>+ Nova página</strong>','Preencha as informações solicitadas'],extra:'Durante a criação, será necessário configurar: 📱 <strong>Versão App</strong> — conteúdo exibido no aplicativo · 💻 <strong>Versão Web</strong> — conteúdo exibido na versão web. Preencha ambas as versões com seus respectivos conteúdos.',required:true,answerLabel:'✏️ Insira aqui a página multiuso criada:',answerId:'v1_pagina'},
+    {title:'🔎 Exploração do painel',desc:'As criações acima são etapas obrigatórias do onboarding. Além delas, explore as demais áreas disponíveis no Painel V1, verificando configurações, permissões e recursos disponíveis.',answerLabel:'✏️ Caso encontre alguma dúvida durante a navegação, registre abaixo:',answerId:'v1_exploracao'}
    ]}
 ];
 
 const STORAGE_KEY='inchurch_onboarding_v4';
-const state={checks:{},answers:{},linkUrls:{},nome:''};
+const state={checks:{},answers:{},linkUrls:{},nome:'',email:''};
 let editMode=false;
 
 function loadState(){try{var r=localStorage.getItem(STORAGE_KEY);if(r)Object.assign(state,JSON.parse(r));}catch(e){}}
@@ -849,10 +926,14 @@ function initNome(){
   }
 }
 
-async function enviarResposta(answerId, modulo, pergunta){
+async function enviarResposta(answerId, modulo, pergunta, obrigatorio){
   var nome=state.nome||'Não informado';
   var resposta=state.answers[answerId]||'';
   var tag=document.getElementById('sent-'+answerId);
+  if(obrigatorio&&!resposta.trim()){
+    alert('Este campo é obrigatório. Preencha antes de enviar.');
+    return;
+  }
   try{
     await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({nome:nome,modulo:modulo,pergunta:pergunta,resposta:resposta,linkDrive:''})});
@@ -902,11 +983,12 @@ function buildModules(){
       var infoHTML=sec.infoBox?'<div class="doc-info-box">'+sec.infoBox+'</div>':'';
       var extraHTML=sec.extra?'<p style="font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.6;padding:10px 12px;background:var(--gl);border-radius:8px;border-left:3px solid var(--g);">'+sec.extra+'</p>':'';
       var imgNoteHTML=sec.imgNote?'<div style="margin-bottom:12px;padding:10px 14px;background:#fff8e1;border:1px solid #ffe082;border-radius:8px;font-size:13px;color:#795548;">'+sec.imgNote+'</div>':'';
+      var reqMark=sec.required?' <span style="color:#c0392b;">*</span>':'';
       var answerHTML=sec.answerLabel?
-        '<div class="doc-answer-label">'+sec.answerLabel+'</div>'+
+        '<div class="doc-answer-label">'+sec.answerLabel+reqMark+'</div>'+
         '<textarea class="doc-answer-area" id="ta-'+sec.answerId+'" placeholder="Campo para resposta" oninput="autoSaveDoc(\''+sec.answerId+'\')">'+(state.answers[sec.answerId]||'')+'</textarea>'+
         '<div class="doc-answer-actions">'+
-          '<button class="send-btn" onclick="enviarResposta(\''+sec.answerId+'\',\''+mod.name+'\',\''+sec.title+'\')">📤 Enviar</button>'+
+          '<button class="send-btn" onclick="enviarResposta(\''+sec.answerId+'\',\''+mod.name+'\',\''+sec.title+'\','+(sec.required?'true':'false')+')">📤 Enviar</button>'+
           '<span class="sent-tag" id="sent-'+sec.answerId+'"></span>'+
         '</div>':'';
       return '<div class="doc-section">'+
@@ -984,17 +1066,19 @@ function updateBadge(modCardId){
 function buildLinks(){
   var grid=document.getElementById('links-grid');grid.innerHTML='';
   LINKS_DATA.forEach(function(lk){
-    var url=state.linkUrls[lk.id]||'';var hasLink=url.length>0;
+    var url=lk.url||state.linkUrls[lk.id]||'';var hasLink=url.length>0;var isFixed=!!lk.url;
     var card=document.createElement('div');
     card.className='lk-card'+(hasLink?'':' no-link');card.id='lk-'+lk.id;
-    card.innerHTML='<div class="lk-icon">'+lk.icon+'</div>'+
-      '<div class="lk-name">'+lk.name+'</div><div class="lk-desc">'+lk.desc+'</div>'+
-      '<div class="lk-status '+(hasLink?'ok':'missing')+'">'+(hasLink?'✓ Link configurado':'Link não configurado')+'</div>'+
+    var editAreaHTML=isFixed?'':
       '<div class="lk-edit-area" id="edit-'+lk.id+'">'+
         '<input type="url" id="input-'+lk.id+'" placeholder="Cole a URL aqui..." value="'+url+'">'+
         '<button class="lk-save-link" onclick="saveLink(\''+lk.id+'\')">Salvar</button>'+
       '</div>';
-    card.onclick=function(e){if(editMode||e.target.closest('.lk-edit-area'))return;if(state.linkUrls[lk.id])window.open(state.linkUrls[lk.id],'_blank');};
+    card.innerHTML='<div class="lk-icon">'+lk.icon+'</div>'+
+      '<div class="lk-name">'+lk.name+'</div><div class="lk-desc">'+lk.desc+'</div>'+
+      '<div class="lk-status '+(hasLink?'ok':'missing')+'">'+(hasLink?'✓ Link configurado':'Link não configurado')+'</div>'+
+      editAreaHTML;
+    card.onclick=function(e){if(editMode||e.target.closest('.lk-edit-area'))return;if(url)window.open(url,'_blank');};
     grid.appendChild(card);
   });applyEditMode();
 }
@@ -1032,7 +1116,70 @@ function filterGloss(){
   renderGloss(GLOSSARIO.filter(function(g){return g.term.toLowerCase().includes(q)||g.def.toLowerCase().includes(q);}));
 }
 
+function salvarIdentificacao(){
+  var inp=document.getElementById('nome-input');
+  var einp=document.getElementById('email-input');
+  var nome=inp?inp.value.trim():'';
+  var email=einp?einp.value.trim():'';
+  if(!nome){alert('Por favor, digite seu nome.');return;}
+  if(!email){alert('Por favor, digite seu e-mail corporativo.');return;}
+  state.nome=nome;state.email=email;saveState();
+  var badge=document.getElementById('nome-badge');
+  var ebadge=document.getElementById('email-badge');
+  var display=document.getElementById('nome-display');
+  var form=document.getElementById('form-identificacao');
+  if(badge)badge.textContent=nome;
+  if(ebadge)ebadge.textContent=email;
+  if(display)display.classList.add('show');
+  if(form)form.style.display='none';
+}
+function salvarNome(){salvarIdentificacao();}
+function editarNome(){
+  var display=document.getElementById('nome-display');
+  var form=document.getElementById('form-identificacao');
+  if(display)display.classList.remove('show');
+  if(form)form.style.display='block';
+}
+function initNome(){
+  if(state.nome){
+    var inp=document.getElementById('nome-input');
+    var einp=document.getElementById('email-input');
+    var badge=document.getElementById('nome-badge');
+    var ebadge=document.getElementById('email-badge');
+    var display=document.getElementById('nome-display');
+    var form=document.getElementById('form-identificacao');
+    if(inp)inp.value=state.nome;
+    if(einp&&state.email)einp.value=state.email;
+    if(badge)badge.textContent=state.nome;
+    if(ebadge&&state.email)ebadge.textContent=state.email;
+    if(display)display.classList.add('show');
+    if(form)form.style.display='none';
+  }
+}
+
 loadState();buildModules();buildLinks();renderGloss(GLOSSARIO);initNome();
 </script>
+
+<!-- FOOTER -->
+<footer style="background:var(--dark);border-top:1px solid rgba(90,181,46,0.2);padding:2rem;margin-top:4rem;">
+  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+    <div style="display:flex;align-items:center;gap:9px;">
+      <div class="logo-grid" style="display:grid;grid-template-columns:repeat(3,8px);gap:2px;">
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#5ab52e;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#5ab52e;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#5ab52e;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#4a6640;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#5ab52e;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#4a6640;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#4a6640;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#4a6640;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#5ab52e;"></span>
+      </div>
+      <span style="font-size:16px;font-weight:700;color:#fff;letter-spacing:-0.5px;"><em style="color:#5ab52e;font-style:normal;">in</em>church</span>
+    </div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.35);text-align:center;">Portal de Onboarding · Uso interno</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.35);">© inChurch</div>
+  </div>
+</footer>
 </body>
 </html>
