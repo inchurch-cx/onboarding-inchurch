@@ -134,7 +134,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .fb-textarea:focus{border-color:var(--g);}
 .send-btn{font-size:12px;padding:6px 16px;border:none;border-radius:8px;background:var(--g);color:#fff;cursor:pointer;font-weight:500;transition:background .15s;}
 .send-btn:hover{background:var(--gd);}
-.sent-tag{font-size:11px;color:var(--gd);opacity:0;transition:opacity .3s;}
+.sent-tag{font-size:12px;font-weight:700;color:#fff;background:#2e7d32;padding:4px 10px;border-radius:99px;display:none;align-items:center;gap:4px;}
+.sent-tag.show{display:inline-flex;}
 
 /* ADMIN BOX */
 .admin-box{background:var(--dark);border-radius:16px;padding:20px 24px;margin-bottom:24px;border:1px solid rgba(90,181,46,0.3);}
@@ -224,7 +225,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .lk-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
 .lk-desc{font-size:12px;color:var(--text3);line-height:1.4;}
 .lk-status{font-size:11px;margin-top:8px;}
-.lk-status.ok{color:var(--gm);}
+.lk-status.ok{color:var(--gm);font-weight:600;text-decoration:underline;text-underline-offset:2px;}
 .lk-status.missing{color:var(--text3);font-style:italic;}
 .lk-edit-area{margin-top:10px;display:none;}
 .lk-edit-area.show{display:block;}
@@ -606,8 +607,8 @@ function toggleOrg(id){
       <p class="admin-box-sub">Para realizar os testes práticos dos módulos abaixo, você usará o painel administrativo da inChurch. Siga as instruções:</p>
       <div class="admin-steps">
         <div class="admin-step"><div class="admin-step-num">1</div><div class="admin-step-text">Acesse: <a href="https://admin.inchurch.com.br/" target="_blank">admin.inchurch.com.br</a></div></div>
-        <div class="admin-step"><div class="admin-step-num">2</div><div class="admin-step-text">Usuário: <strong>suporte@inchurch.com.br</strong></div></div>
-        <div class="admin-step"><div class="admin-step-num">3</div><div class="admin-step-text">Senha: solicite ao <strong>Gabriel</strong> ou <strong>Esther</strong> antes de começar</div></div>
+        <div class="admin-step"><div class="admin-step-num">2</div><div class="admin-step-text">Usuário: <strong>seu e-mail corporativo</strong></div></div>
+        <div class="admin-step"><div class="admin-step-num">3</div><div class="admin-step-text">Senha: você vai criar uma nova senha, redefinindo uma nova senha</div></div>
         <div class="admin-step"><div class="admin-step-num">4</div><div class="admin-step-text">Clique em <strong>Entrar</strong> — você verá a tela do Admin, o painel que as igrejas têm acesso e onde realizará os testes</div></div>
       </div>
     </div>
@@ -732,6 +733,15 @@ const MODULES_DOC=[
       answerId:'pe_convertido'
     },
     {
+      title:'✨ Preenchimento do formulário de quem Aceitou Jesus',
+      desc:'Agora, você irá preencher o formulário de quem aceitou Jesus.',
+      howTitle:'Como realizar:',
+      steps:['Acesse <strong>Pessoas</strong>','Clique em <strong>Geral</strong>','Acesse a aba <strong>Importação de membros</strong>','Preencha o formulário'],
+      required:true,
+      answerLabel:'✏️ Insira aqui o registro criado:',
+      answerId:'pe_aceitou_jesus'
+    },
+    {
       title:'🔎 Exploração do módulo',
       desc:'As criações acima são etapas obrigatórias do onboarding. Além delas, explore as demais áreas disponíveis dentro do módulo Pessoas, como: 🎂 Aniversariantes · 🕒 Histórico · 📊 Indicadores e informações disponíveis',
       answerLabel:'✏️ Caso encontre alguma dúvida durante a navegação, registre abaixo:',
@@ -833,7 +843,7 @@ const MODULES_DOC=[
       title:'👥 Criação de equipe e vínculo na trilha',
       desc:'Agora, você irá criar uma equipe e vinculá-la à trilha criada.',
       howTitle:'Como realizar:',
-      steps:['Acesse a área de <strong>Equipes</strong>','Crie uma nova equipe','Retorne para a trilha criada','Vincule a equipe à jornada'],
+      steps:['Acesse a área de <strong>Equipes</strong>','Crie uma nova equipe','Vincule a trilha criada (clicar no sim)','Salvar'],
       required:true,
       answerLabel:'✏️ Insira aqui a equipe criada e vinculada:',
       answerId:'jo_equipe'
@@ -895,7 +905,7 @@ const MODULES_DOC=[
 ];
 
 const STORAGE_KEY='inchurch_onboarding_v4';
-const state={checks:{},answers:{},linkUrls:{},nome:'',email:''};
+const state={checks:{},answers:{},linkUrls:{},sent:{},nome:'',email:''};
 
 function loadState(){try{var r=localStorage.getItem(STORAGE_KEY);if(r)Object.assign(state,JSON.parse(r));}catch(e){}}
 function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){}}
@@ -940,9 +950,10 @@ async function enviarResposta(answerId, modulo, pergunta, obrigatorio){
   try{
     await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({nome:nome,modulo:modulo,pergunta:pergunta,resposta:resposta,linkDrive:''})});
-    if(tag){tag.textContent='✓ Enviado!';tag.style.opacity='1';setTimeout(function(){tag.style.opacity='0';},3000);}
+    state.sent[answerId]=true;saveState();
+    if(tag){tag.textContent='✓ Enviado com sucesso!';tag.classList.add('show');}
   }catch(e){
-    if(tag){tag.textContent='⚠️ Erro';tag.style.opacity='1';setTimeout(function(){tag.style.opacity='0';},3000);}
+    if(tag){tag.textContent='⚠️ Erro ao enviar';tag.classList.add('show');setTimeout(function(){tag.classList.remove('show');},4000);}
   }
 }
 
@@ -962,9 +973,10 @@ async function enviarFeedback(){
       body:JSON.stringify({nome:nome,modulo:'AVALIAÇÃO DE REAÇÃO',pergunta:'Feedback do Onboarding',
         resposta:'1)'+(q1?q1.value:'Não respondido')+' | 2)'+(q2?q2.value:'Não respondido')+' | 3)'+(q3?q3.value:'Não respondido')+' | 4)'+(q4?q4.value:'Não respondido')+' | Melhoria: '+aberta+' | Comentário: '+comentario,
         linkDrive:''})});
-    if(tag){tag.textContent='✓ Enviado!';tag.style.opacity='1';setTimeout(function(){tag.style.opacity='0';},3000);}
+    state.sent['feedback_final']=true;saveState();
+    if(tag){tag.textContent='✓ Enviado com sucesso!';tag.classList.add('show');}
   }catch(e){
-    if(tag){tag.textContent='⚠️ Erro';tag.style.opacity='1';setTimeout(function(){tag.style.opacity='0';},3000);}
+    if(tag){tag.textContent='⚠️ Erro ao enviar';tag.classList.add('show');setTimeout(function(){tag.classList.remove('show');},4000);}
   }
 }
 
@@ -992,7 +1004,7 @@ function buildModules(){
         '<textarea class="doc-answer-area" id="ta-'+sec.answerId+'" placeholder="Campo para resposta" oninput="autoSaveDoc(\''+sec.answerId+'\')">'+(state.answers[sec.answerId]||'')+'</textarea>'+
         '<div class="doc-answer-actions">'+
           '<button class="send-btn" onclick="enviarResposta(\''+sec.answerId+'\',\''+mod.name+'\',\''+sec.title+'\','+(sec.required?'true':'false')+')">📤 Enviar</button>'+
-          '<span class="sent-tag" id="sent-'+sec.answerId+'"></span>'+
+          '<span class="sent-tag'+(state.sent[sec.answerId]?' show':'')+'" id="sent-'+sec.answerId+'">✓ Enviado com sucesso!</span>'+
         '</div>':'';
       return '<div class="doc-section">'+
         '<div class="doc-section-title">'+sec.title+'</div>'+
@@ -1033,7 +1045,7 @@ function buildCheckboxModule(mod,c){
       '<textarea id="ta-'+q.id+'" placeholder="Escreva sua resposta aqui..." oninput="autoSaveDoc(\''+q.id+'\')">'+(state.answers[q.id]||'')+'</textarea>'+
       '<div class="q-actions">'+
         '<button class="send-btn" onclick="enviarResposta(\''+q.id+'\',\''+mod.name+'\',\''+q.label+'\')">📤 Enviar</button>'+
-        '<span class="sent-tag" id="sent-'+q.id+'"></span>'+
+        '<span class="sent-tag'+(state.sent[q.id]?' show':'')+'" id="sent-'+q.id+'">✓ Enviado com sucesso!</span>'+
       '</div></div>';
   }).join('');
   card.innerHTML=
@@ -1074,7 +1086,7 @@ function buildLinks(){
     card.className='lk-card'+(hasLink?'':' no-link');card.id='lk-'+lk.id;
     card.innerHTML='<div class="lk-icon">'+lk.icon+'</div>'+
       '<div class="lk-name">'+lk.name+'</div><div class="lk-desc">'+lk.desc+'</div>'+
-      '<div class="lk-status '+(hasLink?'ok':'missing')+'">'+(hasLink?'✓ Link configurado':'Link não configurado')+'</div>';
+      '<div class="lk-status '+(hasLink?'ok':'missing')+'">'+(hasLink?'🔗 Acesse clicando aqui':'Link não configurado')+'</div>';
     card.onclick=function(){if(url)window.open(url,'_blank');};
     grid.appendChild(card);
   });
@@ -1136,6 +1148,7 @@ function initNome(){
 }
 
 loadState();buildModules();buildLinks();renderGloss(GLOSSARIO);initNome();
+if(state.sent['feedback_final']){var fbtag=document.getElementById('fb-sent-tag');if(fbtag){fbtag.textContent='✓ Enviado com sucesso!';fbtag.classList.add('show');}}
 </script>
 
 <!-- FOOTER -->
