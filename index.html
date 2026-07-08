@@ -29,11 +29,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 /* TOPBAR */
 .topbar{position:sticky;top:0;z-index:100;background:rgba(26,46,18,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,181,46,0.2);padding:0 2rem;height:56px;display:flex;align-items:center;gap:1.5rem;}
 .logo{display:flex;align-items:center;gap:9px;}
-.logo-grid{display:grid;grid-template-columns:repeat(3,8px);gap:2px;}
+.logo-grid{display:grid;grid-template-columns:repeat(3,8px);grid-auto-rows:8px;gap:2px;}
 .logo-grid span{display:block;width:8px;height:8px;border-radius:2px;}
 .logo-grid .g{background:var(--g);}
-.logo-grid .d{background:#2d6a1f;}
-.logo-grid .e{background:transparent;}
+.logo-grid .k{background:#4c4c4c;}
 .logo-word{font-size:16px;font-weight:700;color:#fff;letter-spacing:-0.5px;}
 .logo-word em{color:var(--g);font-style:normal;}
 .topbar-divider{width:1px;height:18px;background:rgba(255,255,255,0.15);}
@@ -310,9 +309,10 @@ function toggleOrg(id){
 <nav class="topbar">
   <div class="logo">
     <div class="logo-grid">
-      <span class="e"></span><span class="d"></span><span class="e"></span>
-      <span class="g"></span><span class="d"></span><span class="g"></span>
-      <span class="e"></span><span class="d"></span><span class="e"></span>
+      <span class="k"></span><span class="g"></span><span class="k"></span>
+      <span class="g"></span><span class="g"></span><span class="g"></span>
+      <span class="k"></span><span class="g"></span><span class="k"></span>
+      <span class="k"></span><span class="g"></span><span class="k"></span>
     </div>
     <div class="logo-word"><em>in</em>church</div>
   </div>
@@ -1232,16 +1232,19 @@ if(state.sent['feedback_final']){var fbtag=document.getElementById('fb-sent-tag'
 <footer style="background:var(--dark);border-top:1px solid rgba(90,181,46,0.2);padding:2rem;margin-top:4rem;">
   <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
     <div style="display:flex;align-items:center;gap:9px;">
-      <div class="logo-grid" style="display:grid;grid-template-columns:repeat(3,8px);gap:2px;">
-        <span style="display:block;width:8px;height:8px;border-radius:2px;background:transparent;"></span>
-        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#2d6a1f;"></span>
-        <span style="display:block;width:8px;height:8px;border-radius:2px;background:transparent;"></span>
+      <div class="logo-grid" style="display:grid;grid-template-columns:repeat(3,8px);grid-auto-rows:8px;gap:2px;">
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#4c4c4c;"></span>
         <span style="display:block;width:8px;height:8px;border-radius:2px;background:#5ab52e;"></span>
-        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#2d6a1f;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#4c4c4c;"></span>
         <span style="display:block;width:8px;height:8px;border-radius:2px;background:#5ab52e;"></span>
-        <span style="display:block;width:8px;height:8px;border-radius:2px;background:transparent;"></span>
-        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#2d6a1f;"></span>
-        <span style="display:block;width:8px;height:8px;border-radius:2px;background:transparent;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#5ab52e;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#5ab52e;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#4c4c4c;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#5ab52e;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#4c4c4c;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#4c4c4c;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#5ab52e;"></span>
+        <span style="display:block;width:8px;height:8px;border-radius:2px;background:#4c4c4c;"></span>
       </div>
       <span style="font-size:16px;font-weight:700;color:#fff;letter-spacing:-0.5px;"><em style="color:#5ab52e;font-style:normal;">in</em>church</span>
     </div>
